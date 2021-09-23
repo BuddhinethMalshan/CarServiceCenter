@@ -131,7 +131,7 @@ public class Employee {
         frame.getContentPane().add(btnupdate);
         
         JLabel bgpic = new JLabel("");
-        bgpic.setIcon(new ImageIcon("E:\\education\\UOC\\3rd Year\\1st Sem\\IT 3003\\teamr_repository\\bin\\image\\employee.jpg"));
+        bgpic.setIcon(new ImageIcon(Employee.class.getResource("/image/bg.jpg")));
         bgpic.setBounds(0, 0, 587, 336);
         frame.getContentPane().add(bgpic);
         

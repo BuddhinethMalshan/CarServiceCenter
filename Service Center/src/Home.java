@@ -25,8 +25,8 @@ public class Home {
 	private JFrame frame;
 	private JTextField txtname;
 	private JPasswordField txtpass;
-	private JRadioButton rbtnAdmin,rbtnCashier;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
+	//private JRadioButton rbtnAdmin,rbtnCashier;
+	private final ButtonGroup bg1 = new ButtonGroup();
 
 
 	/**
@@ -89,23 +89,33 @@ public class Home {
 		frame.getContentPane().add(txtpass);
 		
 		JRadioButton rbtnAdmin = new JRadioButton("Admin");
-		buttonGroup.add(rbtnAdmin);
+		bg1.add(rbtnAdmin);
 		rbtnAdmin.setFont(new Font("Tahoma", Font.BOLD, 13));
 		rbtnAdmin.setBounds(790, 332, 67, 21);
+		rbtnAdmin.setActionCommand("Admin");
 		frame.getContentPane().add(rbtnAdmin);
 		
 		JRadioButton rbtnCashier = new JRadioButton("Cashier");
 		rbtnCashier.setSelected(true);
-		buttonGroup.add(rbtnCashier);
+		bg1.add(rbtnCashier);
 		rbtnCashier.setFont(new Font("Tahoma", Font.BOLD, 13));
 		rbtnCashier.setBounds(860, 332, 75, 21);
+		rbtnCashier.setActionCommand("Cashier");
 		frame.getContentPane().add(rbtnCashier);
 		
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				login();
-							
+				
+				if (txtname.getText().isEmpty() && txtpass.getPassword().length==0) {					
+					JOptionPane.showMessageDialog(null, "Enter User Name and Password to login your account" );
+				}else if(txtpass.getPassword().length==0) {
+					 JOptionPane.showMessageDialog(null, "Please enter Password");
+				}else if(txtname.getText().isEmpty()) {
+					 JOptionPane.showMessageDialog(null,"Please enter User Name");
+				}else {
+					login();
+				}								
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -129,14 +139,14 @@ public class Home {
 		try {
 			Connection conn1= DriverManager.getConnection("jdbc:mysql://localhost:3306/CarService","root","12345");
 	        System.out.println("rrrrrrr");
-			if(rbtnAdmin.isSelected()) {
+			if(bg1.getSelection().getActionCommand()=="Admin") {
 				//System.out.println("rrrrrrr");
 				ps1 = conn1.prepareStatement(sql1);
 				ps1.setString(1,name);
 				ps1.setString(2,pass);
 				
 				rs1 = ps1.executeQuery();
-				System.out.println(rs1);
+				//System.out.println(rs1);
 				
 					if(rs1.next()){
 						JOptionPane.showMessageDialog(null,"Login Success!!");
@@ -144,16 +154,15 @@ public class Home {
 						JOptionPane.showMessageDialog(null,"Login Fail...");
 					}
 			
-			}if(rbtnCashier.isSelected()) {
-				System.out.println("rrrrrrr");
+			}if(bg1.getSelection().getActionCommand()=="Cashier") {
 				ps2 = conn1.prepareStatement(sql2);
-				System.out.println("rrrrrrr");
+				//System.out.println("rrrrrrr");
 				ps2.setString(1,name);
 				ps2.setString(2,pass);
-				System.out.println("rrrrrrr");
+				//System.out.println("rrrrrrr");
 				
 				rs2 = ps2.executeQuery();
-				System.out.println("111");
+				//System.out.println("111");
 				
 					if(rs2.next()){
 						JOptionPane.showMessageDialog(null,"Login Success!!");
@@ -162,7 +171,7 @@ public class Home {
 					}			
 			}
 			
-		}catch(Exception ex) {
+		 }catch(Exception ex) {
 			
 			System.out.println("Error....!!");
 			

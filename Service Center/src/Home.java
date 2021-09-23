@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -24,8 +25,9 @@ public class Home {
 	private JFrame frame;
 	private JTextField txtname;
 	private JPasswordField txtpass;
-	private JRadioButton rbtnAdmin;
-	private JRadioButton rbtnCashier;
+	private JRadioButton rbtnAdmin,rbtnCashier;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+
 
 	/**
 	 * Launch the application.
@@ -87,11 +89,14 @@ public class Home {
 		frame.getContentPane().add(txtpass);
 		
 		JRadioButton rbtnAdmin = new JRadioButton("Admin");
+		buttonGroup.add(rbtnAdmin);
 		rbtnAdmin.setFont(new Font("Tahoma", Font.BOLD, 13));
 		rbtnAdmin.setBounds(790, 332, 67, 21);
 		frame.getContentPane().add(rbtnAdmin);
 		
 		JRadioButton rbtnCashier = new JRadioButton("Cashier");
+		rbtnCashier.setSelected(true);
+		buttonGroup.add(rbtnCashier);
 		rbtnCashier.setFont(new Font("Tahoma", Font.BOLD, 13));
 		rbtnCashier.setBounds(860, 332, 75, 21);
 		frame.getContentPane().add(rbtnCashier);
@@ -100,6 +105,7 @@ public class Home {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				login();
+							
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -114,45 +120,46 @@ public class Home {
 		ResultSet rs1;
 		ResultSet rs2;
 		
-		String name=txtname.getText();
+		String name= txtname.getText();
 		String pass= String.valueOf(txtpass.getPassword());
 		
 		String sql1 = "select * from admin where name_admin=? AND pass_admin=?;";
 		String sql2 = "select * from cashier where name=? AND password=?;";
 		
 		try {
-			Connection conn1= DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","12345");
+			Connection conn1= DriverManager.getConnection("jdbc:mysql://localhost:3306/CarService","root","12345");
 	        System.out.println("rrrrrrr");
 			if(rbtnAdmin.isSelected()) {
-				
+				//System.out.println("rrrrrrr");
 				ps1 = conn1.prepareStatement(sql1);
 				ps1.setString(1,name);
 				ps1.setString(2,pass);
 				
-				rs1 = ps1.executeQuery(sql1);
+				rs1 = ps1.executeQuery();
 				System.out.println(rs1);
 				
-				if(rs1.next()){
-					JOptionPane.showMessageDialog(null,"Login Success!!");
-				}else {
-					JOptionPane.showMessageDialog(null,"Login Fail...");
-				}
+					if(rs1.next()){
+						JOptionPane.showMessageDialog(null,"Login Success!!");
+					}else {
+						JOptionPane.showMessageDialog(null,"Login Fail...");
+					}
 			
-			}else if(rbtnCashier.isSelected()) {
-				
+			}if(rbtnCashier.isSelected()) {
+				System.out.println("rrrrrrr");
 				ps2 = conn1.prepareStatement(sql2);
+				System.out.println("rrrrrrr");
 				ps2.setString(1,name);
 				ps2.setString(2,pass);
+				System.out.println("rrrrrrr");
 				
-				rs2 = ps2.executeQuery(sql2);
-				System.out.println(rs2);
+				rs2 = ps2.executeQuery();
+				System.out.println("111");
 				
-				if(rs2.next()){
-					JOptionPane.showMessageDialog(null,"Login Success!!");
-				}else {
-					JOptionPane.showMessageDialog(null,"Login Fail...");
-				}
-				
+					if(rs2.next()){
+						JOptionPane.showMessageDialog(null,"Login Success!!");
+					}else {
+						JOptionPane.showMessageDialog(null,"Login Fail...");
+					}			
 			}
 			
 		}catch(Exception ex) {
@@ -160,6 +167,8 @@ public class Home {
 			System.out.println("Error....!!");
 			
 		}
+		
+		
 	}
 	
 	

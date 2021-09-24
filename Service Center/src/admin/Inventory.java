@@ -185,6 +185,14 @@ public class Inventory {
 	           JOptionPane.showMessageDialog(null,  e.getMessage());
 	       }
 	   }
+
+	public void setVisible(boolean b) {
+		Inventory window = new Inventory();
+		window.frame.setVisible(true);
+		
+	}
+
+	
 	   
 
 

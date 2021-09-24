@@ -269,8 +269,8 @@ public class Employee {
 		   
    }
     // Driver  method
-    public static void main(String[] args)
-    {
-        new Employee();
-    }
+   
+	public void setVisible(boolean b) {
+		}
+	
 }

@@ -7,15 +7,25 @@ import javax.swing.JLabel;
 
 import java.awt.Color;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JButton;
 
 
-public class Admin {
 
+public class Admin extends JFrame  {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	
 	private JFrame frame;
 	
 
@@ -63,8 +73,12 @@ public class Admin {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Employee emp = new Employee();
-				//emp.setVisible(true);
+				Employee Emp = new Employee();
+		        Emp.setVisible(true);
+		        frame.setVisible(false);
+		        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+				frame.dispose();
+				
 			}
 			
 		});
@@ -109,6 +123,14 @@ public class Admin {
 			public void mouseExited(MouseEvent e) {
 				panelemp_2.setBackground(new Color(0, 100, 0));
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Customer cus = new Customer();
+		        cus.setVisible(true);
+		        frame.setVisible(false);
+		        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+				frame.dispose();
+			}
 		});
 		panelemp_2.setForeground(Color.WHITE);
 		panelemp_2.setBackground(new Color(0, 100, 0));
@@ -144,8 +166,19 @@ public class Admin {
 		JPanel panelemp_4 = new JPanel();
 		panelemp_4.addMouseListener(new MouseAdapter(){
 	    public void mouseClicked(MouseEvent e) {
-	        System.out.println("Clicked");
+	        
+	        Inventory invent = new Inventory();
+	        invent.setVisible(true);
+	        frame.setVisible(false);
+	        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+			frame.dispose();
 	    }
+
+			
+
+			
+
+
 
 			@Override
 			public void mouseEntered(MouseEvent e) {

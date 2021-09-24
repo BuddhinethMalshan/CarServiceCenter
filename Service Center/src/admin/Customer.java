@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Customer {
 
@@ -170,6 +171,11 @@ public class Customer {
 		btnView.setBounds(489, 195, 89, 23);
 		frame.getContentPane().add(btnView);
 		
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIcon(new ImageIcon(Customer.class.getResource("/image/Service.jpg")));
+		lblNewLabel_4.setBounds(0, 0, 599, 336);
+		frame.getContentPane().add(lblNewLabel_4);
+		
 		
 		frame.revalidate();
         frame.setVisible(true);
@@ -311,5 +317,9 @@ private void update() {
 	
 		   
    }
-    
+
+public void setVisible(boolean b) {
+	// TODO Auto-generated method stub
+	
+}
 }

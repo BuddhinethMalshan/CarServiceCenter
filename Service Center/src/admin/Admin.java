@@ -57,7 +57,7 @@ public class Admin extends JFrame  {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 573, 366);
+		frame.setBounds(100, 100,1083,694);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -65,11 +65,11 @@ public class Admin extends JFrame  {
 		panelemp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				 panelemp.setBackground(new Color(0,0,204));
+				 panelemp.setBackground(new Color(102, 205, 170));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				panelemp.setBackground(new Color(0, 100, 0));
+				panelemp.setBackground(new Color(0, 139, 139));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -82,46 +82,50 @@ public class Admin extends JFrame  {
 			}
 			
 		});
-		panelemp.setBackground(new Color(0, 100, 0));
+		panelemp.setBackground(new Color(0, 139, 139));
 		panelemp.setForeground(Color.WHITE);
-		panelemp.setBounds(251, 62, 120, 40);
+		panelemp.setBounds(228, 90, 192, 118);
 		frame.getContentPane().add(panelemp);
+		panelemp.setLayout(null);
 		
 		JLabel lblemp = new JLabel("\r\nEmployee");
+		lblemp.setBounds(45, 37, 94, 37);
 		lblemp.setForeground(Color.WHITE);
-		lblemp.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblemp.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panelemp.add(lblemp);
 		
 		JPanel panelemp_1 = new JPanel();
 		panelemp_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				 panelemp_1.setBackground(new Color(0,0,204));
+				 panelemp_1.setBackground(new Color(102, 205, 170));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				panelemp_1.setBackground(new Color(0, 100, 0));
+				panelemp_1.setBackground(new Color(0, 139, 139));
 			}
 		});
 		panelemp_1.setForeground(Color.WHITE);
-		panelemp_1.setBackground(new Color(0, 100, 0));
-		panelemp_1.setBounds(251, 132, 120, 40);
+		panelemp_1.setBackground(new Color(0, 139, 139));
+		panelemp_1.setBounds(228, 248, 192, 118);
 		frame.getContentPane().add(panelemp_1);
+		panelemp_1.setLayout(null);
 		
 		JLabel lblreport = new JLabel("Report");
+		lblreport.setBounds(53, 45, 84, 38);
 		panelemp_1.add(lblreport);
 		lblreport.setForeground(Color.WHITE);
-		lblreport.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblreport.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
 		JPanel panelemp_2 = new JPanel();
 		panelemp_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				 panelemp_2.setBackground(new Color(0,0,204));
+				 panelemp_2.setBackground(new Color(102, 205, 170));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				panelemp_2.setBackground(new Color(0, 100, 0));
+				panelemp_2.setBackground(new Color(0, 139, 139));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -133,34 +137,38 @@ public class Admin extends JFrame  {
 			}
 		});
 		panelemp_2.setForeground(Color.WHITE);
-		panelemp_2.setBackground(new Color(0, 100, 0));
-		panelemp_2.setBounds(399, 62, 120, 40);
+		panelemp_2.setBackground(new Color(0, 139, 139));
+		panelemp_2.setBounds(785, 90, 192, 118);
 		frame.getContentPane().add(panelemp_2);
+		panelemp_2.setLayout(null);
 		
 		JLabel lblcus = new JLabel("Customer Details");
+		lblcus.setBounds(23, 45, 148, 30);
 		lblcus.setForeground(Color.WHITE);
-		lblcus.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblcus.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panelemp_2.add(lblcus);
 		
 		JPanel panelemp_3 = new JPanel();
 		panelemp_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				 panelemp_3.setBackground(new Color(0,0,204));
+				 panelemp_3.setBackground(new Color(102, 205, 170));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				panelemp_3.setBackground(new Color(0, 100, 0));
+				panelemp_3.setBackground(new Color(0, 139, 139));
 			}
 		});
 		panelemp_3.setForeground(Color.WHITE);
-		panelemp_3.setBackground(new Color(0, 100, 0));
-		panelemp_3.setBounds(399, 132, 120, 40);
+		panelemp_3.setBackground(new Color(0, 139, 139));
+		panelemp_3.setBounds(494, 90, 192, 118);
 		frame.getContentPane().add(panelemp_3);
+		panelemp_3.setLayout(null);
 		
 		JLabel lblServices = new JLabel("Services");
+		lblServices.setBounds(60, 37, 80, 32);
 		lblServices.setForeground(Color.WHITE);
-		lblServices.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblServices.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panelemp_3.add(lblServices);
 		
 		JPanel panelemp_4 = new JPanel();
@@ -182,48 +190,60 @@ public class Admin extends JFrame  {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				 panelemp_4.setBackground(new Color(0,0,204));
+				 panelemp_4.setBackground(new Color(102, 205, 170));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				panelemp_4.setBackground(new Color(0, 100, 0));
+				panelemp_4.setBackground(new Color(0, 139, 139));
 			}
 	});
 		panelemp_4.setForeground(Color.WHITE);
-		panelemp_4.setBackground(new Color(0, 100, 0));
-		panelemp_4.setBounds(251, 202, 120, 40);
+		panelemp_4.setBackground(new Color(0, 139, 139));
+		panelemp_4.setBounds(785, 248, 192, 118);
 		frame.getContentPane().add(panelemp_4);
+		panelemp_4.setLayout(null);
 		
 		JLabel lblItems = new JLabel("Items");
+		lblItems.setBounds(59, 43, 84, 33);
 		lblItems.setForeground(Color.WHITE);
-		lblItems.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblItems.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panelemp_4.add(lblItems);
 		
 		JPanel panelemp_5 = new JPanel();
 		panelemp_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				 panelemp_5.setBackground(new Color(0,0,204));
+				 panelemp_5.setBackground(new Color(102, 205, 170));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				panelemp_5.setBackground(new Color(0, 100, 0));
+				panelemp_5.setBackground(new Color(0, 139, 139));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Settings set = new Settings();
+		        set.setVisible(true);
+		        frame.setVisible(false);
+		        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+				frame.dispose();
 			}
 		});
 		panelemp_5.setForeground(Color.WHITE);
-		panelemp_5.setBackground(new Color(0, 100, 0));
-		panelemp_5.setBounds(399, 202, 120, 40);
+		panelemp_5.setBackground(new Color(0, 139, 139));
+		panelemp_5.setBounds(494, 248, 192, 118);
 		frame.getContentPane().add(panelemp_5);
+		panelemp_5.setLayout(null);
 		
 		JLabel lblSetting = new JLabel("Settings");
+		lblSetting.setBounds(57, 47, 92, 25);
 		lblSetting.setForeground(Color.WHITE);
-		lblSetting.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblSetting.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panelemp_5.add(lblSetting);
 		
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Admin.class.getResource("/image/Customer.jpg")));
-		lblNewLabel.setBounds(0, 0, 557, 327);
+		lblNewLabel.setBounds(0, 0, 1067, 655);
 		frame.getContentPane().add(lblNewLabel);
 		
 		

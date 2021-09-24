@@ -1,5 +1,7 @@
 package admin;
 
+
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -60,17 +62,17 @@ public class Inventory {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 612, 376);
+		frame.setBounds(100, 100, 1083, 694);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(172, 0, 420, 195);
+		panel.setBounds(258, 0, 809, 366);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 0, 420, 195);
+		scrollPane.setBounds(0, 0, 809, 366);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -106,8 +108,11 @@ public class Inventory {
 		scrollPane.setViewportView(table);
 		
 		JPanel panel_1 = new JPanel();
+		
 		panel_1.setBackground(new Color(102, 205, 170));
-		panel_1.setBounds(0, 0, 173, 337);
+		panel_1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventory", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 1, 14), new java.awt.Color(255, 255, 255))); 
+	      
+		panel_1.setBounds(0, 0, 258, 655);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -150,7 +155,7 @@ public class Inventory {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(0, 139, 139));
-		panel_2.setBounds(172, 192, 424, 145);
+		panel_2.setBounds(258, 365, 809, 290);
 		frame.getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 	}

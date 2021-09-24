@@ -18,12 +18,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-  
+import javax.swing.JPanel;
+
+
+
 public class Employee {
    
    private JFrame frame;
@@ -33,6 +37,7 @@ public class Employee {
    private JTextField txt_name;
    private JTextField txttel;
    private JTextPane txtadd ;
+   private  JLabel lblmsg;
    
     Employee()
     {
@@ -44,10 +49,10 @@ public class Employee {
         frame.setTitle("Employee Details");
         //frame.getContentPane().setBackground(new Color(0,0,0));
         frame.getContentPane().setForeground(Color.WHITE);
-        frame.setBounds(100,100,100,100);
+        frame.setBounds(100,100,1083,694);
         frame.getContentPane().setLayout(null);
         frame.setLocationRelativeTo(null); 
-        frame.setSize(603, 375);
+        frame.setSize(1083, 694);
         model.setColumnIdentifiers(columns);
         table.setModel(model);
         
@@ -58,89 +63,117 @@ public class Employee {
         table.setSelectionForeground(Color.WHITE);
         table.setFont(new Font("Serif", Font.BOLD, 11));
         
-       // table.setFont(new Font("Tahoma", Font,17));
+      
         table.setRowHeight(30);
         table.setAutoCreateRowSorter(true);
+        viewDetails();
         
         JScrollPane pane = new JScrollPane(table);
         pane.setBackground(Color.WHITE);
         table.setForeground(Color.black);
-        pane.setBounds(0,12,587,163);
+        pane.setBounds(0,0,769,248);
         frame.getContentPane().add(pane);
         
-        JButton btnNewButton = new JButton("View");
-        btnNewButton.addActionListener(new ActionListener() {
+        JLabel bgpic = new JLabel("");
+        bgpic.setIcon(new ImageIcon(Employee.class.getResource("/image/Customer.jpg")));
+        bgpic.setBounds(0, 0, 769, 408);
+        frame.getContentPane().add(bgpic);
+        
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(0, 139, 139));
+        panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employee", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 1, 17), new java.awt.Color(255, 255, 255)));
+        panel.setBounds(0, 407, 769, 248);
+        frame.getContentPane().add(panel);
+        panel.setLayout(null);
+        
+        JButton btnNewButton = new JButton("Clear");
+        btnNewButton.setBounds(476, 151, 89, 23);
+        panel.add(btnNewButton);
+        
+        txtadd = new JTextPane();
+        txtadd.setBounds(546, 40, 186, 68);
+        panel.add(txtadd);
+        txtadd.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        
+        JButton btninsert = new JButton("New Employee ");
+        btninsert.setBounds(600, 148, 129, 29);
+        panel.add(btninsert);
+        
+        JLabel lblEmployeeName = new JLabel("Employee name");
+        lblEmployeeName.setFont(new Font("Arial Black", Font.PLAIN, 14));
+        lblEmployeeName.setBounds(10, 41, 131, 29);
+        panel.add(lblEmployeeName);
+        JLabel lbladd = new JLabel(" Address");
+        lbladd.setFont(new Font("Arial Black", Font.PLAIN, 14));
+        lbladd.setBounds(408, 48, 99, 22);
+        panel.add(lbladd);
+        
+        txt_name = new JTextField();
+        txt_name.setBounds(182, 46, 149, 26);
+        panel.add(txt_name);
+        txt_name.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        txt_name.setColumns(10);
+        
+        txttel = new JTextField();
+        txttel.setBounds(182, 103, 149, 20);
+        panel.add(txttel);
+        txttel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        txttel.setColumns(10);
+        
+        JLabel lbltel = new JLabel("Tel-phone");
+        lbltel.setFont(new Font("Arial Black", Font.PLAIN, 14));
+        lbltel.setBounds(10, 104, 99, 16);
+        panel.add(lbltel);
+        
+        lblmsg = new JLabel("");
+        lblmsg.setBounds(178, 134, 218, 27);
+        panel.add(lblmsg);
+        lblmsg.setForeground(new Color(255, 0, 0));
+        btninsert.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		viewDetails();
+        		insert();
+        		DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setRowCount(0);
+				viewDetails();
         	}
         });
-        btnNewButton.setBounds(20, 186, 89, 23);
-        frame.getContentPane().add(btnNewButton);
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		clear();
+        	}
+        });
+        
+        JPanel panel_1 = new JPanel();
+        panel_1.setBackground(new Color(102, 205, 170));
+        panel_1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employee", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 1, 16), new java.awt.Color(255, 255, 255)));
+        panel_1.setBounds(768, 0, 299, 655);
+        frame.getContentPane().add(panel_1);
+        panel_1.setLayout(null);
+        
+        JButton btnupdate = new JButton("Update");
+        btnupdate.setBounds(10, 484, 89, 23);
+        panel_1.add(btnupdate);
+        
+        
+       
         
         JButton btnNewButton_1 = new JButton("Delete");
+        btnNewButton_1.setBounds(10, 542, 89, 23);
+        panel_1.add(btnNewButton_1);
         btnNewButton_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
         		delete();
         	}
         });
-        btnNewButton_1.setBounds(20, 230, 89, 23);
-        frame.getContentPane().add(btnNewButton_1);
-        
-        JLabel lblEmployeeName = new JLabel("Employee name");
-        lblEmployeeName.setBounds(148, 188, 107, 19);
-        frame.getContentPane().add(lblEmployeeName);
-        JLabel lbladd = new JLabel(" Address");
-        lbladd.setBounds(148, 232, 89, 19);
-        frame.getContentPane().add(lbladd);
-        
-        JLabel lbltel = new JLabel("Tel-phone");
-        lbltel.setBounds(371, 190, 78, 14);
-        frame.getContentPane().add(lbltel);
-        
-        txt_name = new JTextField();
-        txt_name.setBounds(254, 186, 86, 20);
-        frame.getContentPane().add(txt_name);
-        txt_name.setColumns(10);
-        
-        txttel = new JTextField();
-        txttel.setBounds(459, 187, 86, 20);
-        frame.getContentPane().add(txttel);
-        txttel.setColumns(10);
-        
-        txtadd = new JTextPane();
-        txtadd.setBounds(254, 230, 163, 53);
-        frame.getContentPane().add(txtadd);
-        
-        JButton btninsert = new JButton("New Employee ");
-        btninsert.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		insert();
-        	}
-        });
-        btninsert.setBounds(444, 230, 129, 29);
-        frame.getContentPane().add(btninsert);
-        
-        JButton btnupdate = new JButton("Update");
         btnupdate.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		update();
+        		DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setRowCount(0);
+				viewDetails();
         	}
         });
-        btnupdate.setBounds(20, 278, 89, 23);
-        frame.getContentPane().add(btnupdate);
-        
-        JLabel bgpic = new JLabel("");
-        bgpic.setIcon(new ImageIcon(Employee.class.getResource("/image/bg.jpg")));
-        bgpic.setBounds(0, 0, 587, 336);
-        frame.getContentPane().add(bgpic);
-        
-        
-        
-        
-        
-        
-        
         frame.revalidate();
         frame.setVisible(true);
     }
@@ -188,31 +221,56 @@ public class Employee {
 	        }
 		}
 		else {
-			JOptionPane.showConfirmDialog(frame,"Please select employee");
+			JOptionPane.showMessageDialog(frame,"Please select employee");
 		}
 	   
    }
    
    private void insert() {
+	   
+	 
+
+ 	    
+	   
 	   int telnum = 0;
 	   String empname,empadd;
+	   if(txt_name.getText().length() == 0 ) {
+	    	lblmsg.setText("Please Enter a customer name");
+	    }
+	    else if(!(Pattern.matches("^[a-zA-Z]+$", txt_name.getText()))) {
+	    	lblmsg.setText("Please Enter a valid name Ex: Johon");
+	    }
+	    
+	    else if(txtadd.getText().length() ==0) {
+	    	lblmsg.setText("Please Enter Customer Address");
+	    }
+	    else if(txttel.getText().length() != 10) {
+	    	lblmsg.setText("Please Enter Valid Phone number Ex:07xxxxxxxx");
+	    }
 	   
-	   
-	   try {
-		   telnum = Integer.parseInt(txttel.getText());
-		   empname = txt_name.getText();
-		   empadd = txtadd.getText();
-       	    Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost/carservice", "root", "");
-			 String query1 = "INSERT INTO `employee`( `Employee_name`, `Employee_add`, `Employee_tel`) VALUES ('"+empname+"','"+empadd+"',"+telnum+")";
-             Statement ps = con.prepareStatement(query1);
-             ps.executeUpdate(query1);
-          
-             JOptionPane.showMessageDialog(null, "Employee Information Update");
+	    else {
+	           try {
+		            telnum = Integer.parseInt(txttel.getText());
+		            empname = txt_name.getText();
+		            empadd = txtadd.getText();
+       	            Class.forName("com.mysql.cj.jdbc.Driver");
+			        Connection con=DriverManager.getConnection("jdbc:mysql://localhost/carservice", "root", "");
+			        String query1 = "INSERT INTO `employee`( `Employee_name`, `Employee_add`, `Employee_tel`) VALUES ('"+empname+"','"+empadd+"',"+telnum+")";
+                    Statement ps = con.prepareStatement(query1);
+                    ps.executeUpdate(query1);
+                    JOptionPane.showMessageDialog(null, "Employee  " +empname+  " Information Update");
+                    lblmsg.setText("");
+                    txt_name.setText("");
+                    txtadd.setText("");
+                    txttel.setText("");
+                    con.close();
+             
            
-       } catch (Exception e) {
-           JOptionPane.showMessageDialog(null,  e.getMessage());
-       }
+              } 
+	          catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,  e.getMessage());
+              }
+	    }
    }
    
    private void update() {
@@ -268,6 +326,12 @@ public class Employee {
 	
 		   
    }
+   private void clear() {
+       lblmsg.setText("");
+       txt_name.setText("");
+       txtadd.setText("");
+       txttel.setText("");
+     }
     // Driver  method
    
 	public void setVisible(boolean b) {

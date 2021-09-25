@@ -34,18 +34,6 @@ public class Home {
 	private JPasswordField txtpass;
 	private final ButtonGroup bg1 = new ButtonGroup();
 	
-	private JLabel lblslide;
-	Timer tm;
-	int x=0;
-	String[] list = { "/images/carService0.jpeg",
-					  "/images/carService1.jpeg",
-					  "/images/carService2.jpeg",
-					  "/images/carService3.jpeg",
-					  "/images/carService4.jpeg",
-					  "/images/carService5.jpeg",
-	};
-
-
 	/**
 	 * Launch the application.
 	 */

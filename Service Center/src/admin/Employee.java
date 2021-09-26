@@ -24,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.WindowConstants;
 import javax.swing.JPanel;
 
 
@@ -86,80 +87,46 @@ public class Employee {
         frame.getContentPane().add(panel);
         panel.setLayout(null);
         
-        JButton btnNewButton = new JButton("Clear");
-        btnNewButton.setBounds(476, 151, 89, 23);
-        panel.add(btnNewButton);
-        
-        txtadd = new JTextPane();
-        txtadd.setBounds(546, 40, 186, 68);
-        panel.add(txtadd);
-        txtadd.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        
-        JButton btninsert = new JButton("New Employee ");
-        btninsert.setBounds(600, 148, 129, 29);
-        panel.add(btninsert);
-        
-        JLabel lblEmployeeName = new JLabel("Employee name");
-        lblEmployeeName.setFont(new Font("Arial Black", Font.PLAIN, 14));
-        lblEmployeeName.setBounds(10, 41, 131, 29);
-        panel.add(lblEmployeeName);
-        JLabel lbladd = new JLabel(" Address");
-        lbladd.setFont(new Font("Arial Black", Font.PLAIN, 14));
-        lbladd.setBounds(408, 48, 99, 22);
-        panel.add(lbladd);
-        
-        txt_name = new JTextField();
-        txt_name.setBounds(182, 46, 149, 26);
-        panel.add(txt_name);
-        txt_name.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        txt_name.setColumns(10);
-        
-        txttel = new JTextField();
-        txttel.setBounds(182, 103, 149, 20);
-        panel.add(txttel);
-        txttel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        txttel.setColumns(10);
-        
-        JLabel lbltel = new JLabel("Tel-phone");
-        lbltel.setFont(new Font("Arial Black", Font.PLAIN, 14));
-        lbltel.setBounds(10, 104, 99, 16);
-        panel.add(lbltel);
-        
-        lblmsg = new JLabel("");
-        lblmsg.setBounds(178, 134, 218, 27);
-        panel.add(lblmsg);
-        lblmsg.setForeground(new Color(255, 0, 0));
-        btninsert.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		insert();
-        		DefaultTableModel model = (DefaultTableModel) table.getModel();
-				model.setRowCount(0);
-				viewDetails();
-        	}
-        });
-        btnNewButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		clear();
-        	}
-        });
-        
-        JPanel panel_1 = new JPanel();
-        panel_1.setBackground(new Color(102, 205, 170));
-        panel_1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employee", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 1, 16), new java.awt.Color(255, 255, 255)));
-        panel_1.setBounds(768, 0, 299, 655);
-        frame.getContentPane().add(panel_1);
-        panel_1.setLayout(null);
-        
         JButton btnupdate = new JButton("Update");
-        btnupdate.setBounds(10, 484, 89, 23);
-        panel_1.add(btnupdate);
+        btnupdate.setBackground(new Color(102, 205, 170));
+        btnupdate.setForeground(new Color(255, 255, 255));
+        btnupdate.setBounds(531, 43, 100, 45);
+        panel.add(btnupdate);
         
         
        
         
         JButton btnNewButton_1 = new JButton("Delete");
-        btnNewButton_1.setBounds(10, 542, 89, 23);
-        panel_1.add(btnNewButton_1);
+        btnNewButton_1.setBackground(new Color(102, 205, 170));
+        btnNewButton_1.setForeground(new Color(255, 255, 255));
+        btnNewButton_1.setBounds(653, 43, 93, 45);
+        panel.add(btnNewButton_1);
+        
+        JPanel panel_2 = new JPanel();
+        panel_2.setBackground(new Color(0, 0, 0));
+        panel_2.setBounds(0, 174, 769, 74);
+        panel.add(panel_2);
+        panel_2.setLayout(null);
+        
+        JLabel lblNewLabel = new JLabel("");
+        lblNewLabel.setBounds(151, 0, 618, 74);
+        panel_2.add(lblNewLabel);
+        lblNewLabel.setIcon(new ImageIcon(Employee.class.getResource("/image/Car_logos.png")));
+        
+        JButton btnback = new JButton("Back");
+        btnback.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Admin adm = new Admin();
+		        adm.setVisible(true);
+		        frame.setVisible(false);
+		        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+				frame.dispose();
+        	}
+        });
+        btnback.setBackground(new Color(102, 205, 170));
+        btnback.setForeground(new Color(255, 255, 255));
+        btnback.setBounds(653, 99, 93, 45);
+        panel.add(btnback);
         btnNewButton_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
@@ -172,6 +139,74 @@ public class Employee {
         		DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
 				viewDetails();
+        	}
+        });
+        
+        JPanel panel_1 = new JPanel();
+        panel_1.setBackground(new Color(102, 205, 170));
+        panel_1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employee Details Input", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 1, 16), new java.awt.Color(255, 255, 255)));
+        panel_1.setBounds(768, 0, 299, 655);
+        frame.getContentPane().add(panel_1);
+        panel_1.setLayout(null);
+        
+        JLabel lblEmployeeName = new JLabel("Employee name :");
+        lblEmployeeName.setBounds(10, 50, 131, 29);
+        panel_1.add(lblEmployeeName);
+        lblEmployeeName.setFont(new Font("Arial Black", Font.PLAIN, 14));
+        JLabel lbladd = new JLabel(" Address :");
+        lbladd.setBounds(10, 245, 99, 22);
+        panel_1.add(lbladd);
+        lbladd.setFont(new Font("Arial Black", Font.PLAIN, 14));
+        
+        JButton btnNewButton = new JButton("Clear");
+        btnNewButton.setBackground(new Color(0, 139, 139));
+        btnNewButton.setForeground(new Color(255, 255, 255));
+        btnNewButton.setBounds(114, 516, 116, 40);
+        panel_1.add(btnNewButton);
+        
+        JButton btninsert = new JButton("New Employee ");
+        btninsert.setForeground(new Color(255, 255, 255));
+        btninsert.setBackground(new Color(0, 139, 139));
+        btninsert.setBounds(114, 426, 123, 40);
+        panel_1.add(btninsert);
+        
+        txtadd = new JTextPane();
+        txtadd.setBounds(113, 301, 176, 68);
+        panel_1.add(txtadd);
+        txtadd.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        
+        txt_name = new JTextField();
+        txt_name.setBounds(113, 90, 176, 40);
+        panel_1.add(txt_name);
+        txt_name.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        txt_name.setColumns(10);
+        
+        txttel = new JTextField();
+        txttel.setBounds(113, 181, 176, 34);
+        panel_1.add(txttel);
+        txttel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        txttel.setColumns(10);
+        
+        JLabel lbltel = new JLabel("Tel-phone :");
+        lbltel.setBounds(10, 141, 99, 16);
+        panel_1.add(lbltel);
+        lbltel.setFont(new Font("Arial Black", Font.PLAIN, 14));
+        
+        lblmsg = new JLabel("");
+        lblmsg.setBounds(71, 380, 218, 27);
+        panel_1.add(lblmsg);
+        lblmsg.setForeground(new Color(255, 0, 0));
+        btninsert.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		insert();
+        		DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setRowCount(0);
+				viewDetails();
+        	}
+        });
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		clear();
         	}
         });
         frame.revalidate();
@@ -235,14 +270,14 @@ public class Employee {
 	   int telnum = 0;
 	   String empname,empadd;
 	   if(txt_name.getText().length() == 0 ) {
-	    	lblmsg.setText("Please Enter a customer name");
+	    	lblmsg.setText("Please Enter a Employee name");
 	    }
 	    else if(!(Pattern.matches("^[a-zA-Z]+$", txt_name.getText()))) {
 	    	lblmsg.setText("Please Enter a valid name Ex: Johon");
 	    }
 	    
 	    else if(txtadd.getText().length() ==0) {
-	    	lblmsg.setText("Please Enter Customer Address");
+	    	lblmsg.setText("Please Enter Employee Address");
 	    }
 	    else if(txttel.getText().length() != 10) {
 	    	lblmsg.setText("Please Enter Valid Phone number Ex:07xxxxxxxx");
@@ -336,5 +371,4 @@ public class Employee {
    
 	public void setVisible(boolean b) {
 		}
-	
 }

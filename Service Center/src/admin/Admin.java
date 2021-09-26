@@ -240,12 +240,28 @@ public class Admin extends JFrame  {
 		lblSetting.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panelemp_5.add(lblSetting);
 		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 0, 0));
+		panel.setBounds(0, 581, 1067, 74);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setIcon(new ImageIcon(Admin.class.getResource("/image/Car_logos.png")));
+		lblNewLabel_1.setBounds(449, 0, 618, 74);
+		panel.add(lblNewLabel_1);
+		
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Admin.class.getResource("/image/Customer.jpg")));
 		lblNewLabel.setBounds(0, 0, 1067, 655);
 		frame.getContentPane().add(lblNewLabel);
 		
+		
+	}
+	public void setVisible(boolean b) {
+		Admin window = new Admin();
+		window.frame.setVisible(true);
 		
 	}
 }

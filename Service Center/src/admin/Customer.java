@@ -19,6 +19,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
+import javax.swing.WindowConstants;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
@@ -112,29 +114,79 @@ public class Customer {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(102, 205, 170));
-		panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Customer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 1, 18), new java.awt.Color(255, 255, 255)));
+		panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Customer Details Input", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 1, 18), new java.awt.Color(255, 255, 255)));
 		panel.setBounds(768, 0, 299, 655);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JButton btnUpdate = new JButton("Update");
-		btnUpdate.setBounds(10, 428, 101, 36);
-		panel.add(btnUpdate);
+		JButton btnNewButton = new JButton("Clear");
+		btnNewButton.setBackground(new Color(0, 139, 139));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBounds(146, 559, 143, 42);
+		panel.add(btnNewButton);
 		
-		JButton btnDelete = new JButton("Delete");
-		btnDelete.setBounds(10, 495, 101, 36);
-		panel.add(btnDelete);
-		btnDelete.addActionListener(new ActionListener() {
+		JButton btnnewcus = new JButton("New Customer");
+		btnnewcus.setForeground(new Color(255, 255, 255));
+		btnnewcus.setBackground(new Color(0, 139, 139));
+		btnnewcus.setBounds(146, 484, 143, 46);
+		panel.add(btnnewcus);
+		
+		txtcustel = new JTextField();
+		txtcustel.setBounds(122, 159, 167, 26);
+		panel.add(txtcustel);
+		txtcustel.setColumns(10);
+		
+		txtcusveh = new JTextField();
+		txtcusveh.setBounds(122, 242, 167, 42);
+		panel.add(txtcusveh);
+		txtcusveh.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("Tel-number :");
+		lblNewLabel_2.setBounds(10, 128, 120, 24);
+		panel.add(lblNewLabel_2);
+		lblNewLabel_2.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		
+		JLabel lblNewLabel_3 = new JLabel("Vehicle Type :");
+		lblNewLabel_3.setBounds(10, 209, 143, 18);
+		panel.add(lblNewLabel_3);
+		lblNewLabel_3.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		
+		txtcusadd = new JTextPane();
+		txtcusadd.setBounds(122, 345, 167, 72);
+		panel.add(txtcusadd);
+		
+		JLabel lblNewLabel_1 = new JLabel("Customer address :");
+		lblNewLabel_1.setBounds(10, 317, 155, 24);
+		panel.add(lblNewLabel_1);
+		lblNewLabel_1.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		
+		txtcusname = new JTextField();
+		txtcusname.setBounds(122, 79, 167, 42);
+		panel.add(txtcusname);
+		txtcusname.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Customer name :");
+		lblNewLabel.setBounds(10, 44, 143, 24);
+		panel.add(lblNewLabel);
+		lblNewLabel.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		
+		lblmsg = new JLabel("");
+		lblmsg.setBounds(75, 431, 214, 27);
+		panel.add(lblmsg);
+		lblmsg.setForeground(new Color(255, 0, 0));
+		btnnewcus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				delete();
-			}
-		});
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				update();
+				insert();
+				
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
+				
 				viewDetails();
+			}
+		});
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clear();
 			}
 		});
 		
@@ -145,69 +197,53 @@ public class Customer {
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Customer name");
-		lblNewLabel.setFont(new Font("Arial Black", Font.PLAIN, 14));
-		lblNewLabel.setBounds(10, 32, 143, 24);
-		panel_1.add(lblNewLabel);
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.setBackground(new Color(102, 205, 170));
+		btnUpdate.setForeground(new Color(255, 255, 255));
+		btnUpdate.setBounds(496, 43, 106, 41);
+		panel_1.add(btnUpdate);
 		
-		txtcusname = new JTextField();
-		txtcusname.setBounds(178, 32, 167, 24);
-		panel_1.add(txtcusname);
-		txtcusname.setColumns(10);
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.setBackground(new Color(102, 205, 170));
+		btnDelete.setForeground(new Color(255, 255, 255));
+		btnDelete.setBounds(640, 38, 106, 46);
+		panel_1.add(btnDelete);
 		
-		JLabel lblNewLabel_1 = new JLabel("Customer address");
-		lblNewLabel_1.setFont(new Font("Arial Black", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(10, 104, 155, 24);
-		panel_1.add(lblNewLabel_1);
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(0, 0, 0));
+		panel_2.setBounds(0, 174, 769, 74);
+		panel_1.add(panel_2);
+		panel_2.setLayout(null);
 		
-		txtcusadd = new JTextPane();
-		txtcusadd.setBounds(178, 93, 167, 72);
-		panel_1.add(txtcusadd);
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setIcon(new ImageIcon(Customer.class.getResource("/image/Car_logos.png")));
+		lblNewLabel_5.setBounds(151, 0, 618, 74);
+		panel_2.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_2 = new JLabel("Tel-number");
-		lblNewLabel_2.setFont(new Font("Arial Black", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(410, 32, 120, 24);
-		panel_1.add(lblNewLabel_2);
-		
-		txtcustel = new JTextField();
-		txtcustel.setBounds(561, 36, 120, 20);
-		panel_1.add(txtcustel);
-		txtcustel.setColumns(10);
-		
-		JLabel lblNewLabel_3 = new JLabel("Vehicle Type");
-		lblNewLabel_3.setFont(new Font("Arial Black", Font.PLAIN, 14));
-		lblNewLabel_3.setBounds(410, 110, 143, 18);
-		panel_1.add(lblNewLabel_3);
-		
-		txtcusveh = new JTextField();
-		txtcusveh.setBounds(561, 108, 132, 20);
-		panel_1.add(txtcusveh);
-		txtcusveh.setColumns(10);
-		
-		JButton btnnewcus = new JButton("New Customer");
-		btnnewcus.setBounds(417, 156, 136, 29);
-		panel_1.add(btnnewcus);
-		
-		JButton btnNewButton = new JButton("Clear");
-		btnNewButton.setBounds(593, 157, 100, 26);
-		panel_1.add(btnNewButton);
-		
-		lblmsg = new JLabel("");
-		lblmsg.setBounds(178, 176, 214, 27);
-		panel_1.add(lblmsg);
-		lblmsg.setForeground(new Color(255, 0, 0));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnback = new JButton("Back");
+		btnback.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				clear();
+				Admin adm = new Admin();
+		        adm.setVisible(true);
+		        frame.setVisible(false);
+		        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+				frame.dispose();
 			}
 		});
-		btnnewcus.addActionListener(new ActionListener() {
+		btnback.setBackground(new Color(102, 205, 170));
+		btnback.setForeground(new Color(255, 255, 255));
+		btnback.setBounds(642, 108, 104, 41);
+		panel_1.add(btnback);
+		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				insert();
-				
+				delete();
+			}
+		});
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				update();
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
-				
 				viewDetails();
 			}
 		});

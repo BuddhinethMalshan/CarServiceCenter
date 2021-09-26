@@ -38,7 +38,7 @@ public class Inventory {
 	
 	private DefaultTableModel model;
 
-	/**
+	/***
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {

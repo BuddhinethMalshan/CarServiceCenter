@@ -33,7 +33,7 @@ public class Settings {
     private JCheckBox checkshow;
     private JLabel lblpasserr;
     private JTextField txtname;
-	/**
+	/***
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -49,7 +49,8 @@ public class Settings {
 		});
 	}
 
-	/**
+	/***
+	 * 
 	 * Create the application.
 	 */
 	public Settings() {
@@ -200,7 +201,7 @@ public class Settings {
 			lblpasserr.setText("Please Enter a your name");
 	    }
  	    else if(!(Pattern.matches("^[a-zA-Z]+$", txtname.getText()))) {
- 	    	lblpasserr.setText("Please Enter a valid name Ex: Johon");
+ 	    	lblpasserr.setText("Please Enter a valid name Ex: TOM");
  	    }
 //		else if(curpwd.getText().length()==0){
 //			lblpasserr.setText("Please Enter Old Password");

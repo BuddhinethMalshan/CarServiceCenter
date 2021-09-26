@@ -18,17 +18,7 @@ import java.awt.event.MouseEvent;
 
 public class Admin   {
 
-	/**
-	 * 
-	 */
 	
-	/**
-	 * 
-	 */
-	
-	/**
-	 * 
-	 */
 	
 	private JFrame frame;
 	

@@ -39,7 +39,7 @@ public class Customer {
     private Object[] row ;
     private JLabel lblmsg;
 
-	/**
+	/****
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {

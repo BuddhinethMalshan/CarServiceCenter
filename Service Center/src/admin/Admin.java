@@ -16,12 +16,16 @@ import java.awt.event.MouseEvent;
 
 
 
-public class Admin extends JFrame  {
+public class Admin   {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * 
+	 */
+	
 	/**
 	 * 
 	 */

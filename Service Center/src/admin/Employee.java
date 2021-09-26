@@ -39,7 +39,7 @@ public class Employee {
    private JTextField txttel;
    private JTextPane txtadd ;
    private  JLabel lblmsg;
-   
+ //Constucter
     Employee()
     {
        

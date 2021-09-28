@@ -27,7 +27,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 
-public class Customer {
+public class Customer extends Admin  {
 
 	private JFrame frame;
 	private JTable table;

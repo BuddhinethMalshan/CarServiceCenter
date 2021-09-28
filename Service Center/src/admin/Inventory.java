@@ -24,6 +24,8 @@ import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.ImageIcon;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Inventory {
 
@@ -117,12 +119,39 @@ public class Inventory {
 		panel_1.add(lblprice);
 		
 		txtqty = new JTextField();
+		txtqty.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				 if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9') {
+					    txtqty.setEditable(true);
+					    lblmsg.setText("");
+				    } else {
+				    	txtqty.setEditable(true);
+				        lblmsg.setText("Enter only Quantity");
+				    }
+				
+			}
+		});
 		txtqty.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtqty.setBounds(77, 179, 126, 39);
 		panel_1.add(txtqty);
 		txtqty.setColumns(10);
 		
 		txtprice = new JTextField();
+		txtprice.addKeyListener(new KeyAdapter() {
+			
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9') {
+				    txtprice.setEditable(true);
+				    lblmsg.setText("");
+			    } else {
+			    	txtprice.setEditable(true);
+			        lblmsg.setText("Enter price only ");
+			    }
+			}
+		});
 		txtprice.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtprice.setBounds(77, 271, 126, 39);
 		panel_1.add(txtprice);
@@ -227,6 +256,9 @@ public class Inventory {
 		   int itemqty = 0;
 		   int itemprice = 0;
 		   String itemname;
+		   
+		   
+		   
 		   if(txtname.getText().length() == 0 ) {
 		    	lblmsg.setText("Please Enter a Item name");
 		    }
@@ -246,7 +278,11 @@ public class Inventory {
 			   itemprice = Integer.parseInt(txtprice.getText());
 	       	    Class.forName("com.mysql.cj.jdbc.Driver");
 				Connection con=DriverManager.getConnection("jdbc:mysql://localhost/carservice", "root", "");
-				 String query1 = "INSERT INTO `item`( `Item_name`, `item_qty`, `item_price`) VALUES ('"+itemname +"',"+itemqty+","+itemprice+")";
+				 
+				String query1 = "INSERT INTO `item`( `Item_name`, `item_qty`, `item_price`) VALUES ('"+itemname +"',"+itemqty+","+itemprice+")";
+
+			     
+				
 	             Statement ps = con.prepareStatement(query1);
 	             ps.executeUpdate(query1);
 	             
@@ -334,26 +370,47 @@ public class Inventory {
 	            if(j == 1) {
 	    	  
 	    	           String itemnewname = JOptionPane.showInputDialog("Enter new name");
+	    	           if(itemnewname.isEmpty()) {
+	    	        	   JOptionPane.showMessageDialog(null, "Please fill the field");
+	    	           }
+	    	           
+	    	           else {
 	    	           String query = "UPDATE `item` SET `Item_name`='"+itemnewname+"' WHERE `item_id`="+table.getValueAt(i,0);
 	    	           Statement ps = con.prepareStatement(query);
 	     	           ps.executeUpdate(query);
 	    	           JOptionPane.showMessageDialog(null, "Item new name Update");
+	    	           con.close();
+	    	           }
 	    	           
 	    	  
 	            }
 	            else if(j == 2){
-	    	           String itemnewqty = JOptionPane.showInputDialog("Enter new Address");
+	    	           String itemnewqty = JOptionPane.showInputDialog("Enter new Quantity");
+	    	           if(itemnewqty.isEmpty()) {
+	    	        	   JOptionPane.showMessageDialog(null, "Please fill the field");
+	    	           }
+	    	           
+	    	           else {
 	    	           String query = "UPDATE `employee` SET `item_qty`='"+itemnewqty+"' WHERE `item_id`="+table.getValueAt(i,0);
 	    	           Statement ps = con.prepareStatement(query);
 	     	           ps.executeUpdate(query);
 	    	           JOptionPane.showMessageDialog(null, "Item new quantity Update");
+	    	           con.close();
+	    	           }
 	            }
 	            else if(j == 3){
 	    	           String itemnewprice = JOptionPane.showInputDialog("Enter new Price");
+	    	           if(itemnewprice.isEmpty()) {
+	    	        	   JOptionPane.showMessageDialog(null, "Please fill the field");
+	    	           }
+	    	           
+	    	           else {
 	    	           String query = "UPDATE `employee` SET `item_price`='"+itemnewprice+"' WHERE `item_id`="+table.getValueAt(i,0);
 	    	           Statement ps = con.prepareStatement(query);
 	     	           ps.executeUpdate(query);
 	    	           JOptionPane.showMessageDialog(null, "Item new price Update");
+	    	           con.close();
+	    	           }
 	    	           
 	            }
 	      

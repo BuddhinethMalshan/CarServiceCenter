@@ -26,6 +26,8 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.WindowConstants;
 import javax.swing.JPanel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 
 
@@ -182,6 +184,18 @@ public class Employee {
         txt_name.setColumns(10);
         
         txttel = new JTextField();
+        txttel.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyPressed(KeyEvent e) {
+        		if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9') {
+				    txttel.setEditable(true);
+				    lblmsg.setText("");
+			    } else {
+			    	txttel.setEditable(true);
+			        lblmsg.setText("Enter Valid number ");
+			    }
+        	}
+        });
         txttel.setBounds(113, 181, 176, 34);
         panel_1.add(txttel);
         txttel.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -320,27 +334,46 @@ public class Employee {
 	            if(j == 1) {
 	    	  
 	    	           String empnewname = JOptionPane.showInputDialog("Enter new name");
+	    	           if(empnewname.isEmpty() || !(Pattern.matches("^[a-zA-Z]+$",empnewname ))) {
+                      	 JOptionPane.showMessageDialog(null, "Please fill the field");
+                      	
+                      }
+	    	           
+	    	           else {
 	    	           String query = "UPDATE `employee` SET `Employee_name`='"+empnewname+"' WHERE `Employee_Id`="+table.getValueAt(i,0);
 	    	           Statement ps = con.prepareStatement(query);
 	     	           ps.executeUpdate(query);
 	    	           JOptionPane.showMessageDialog(null, "Employee Information Update");
-	    	           
+	    	           con.close();
+                       }
 	    	  
 	            }
 	            else if(j == 2){
 	    	           String empnewadd = JOptionPane.showInputDialog("Enter new Address");
+	    	           if(empnewadd.isEmpty()) {
+	    	            	JOptionPane.showMessageDialog(null, "Please fill the field");
+	    	            }
+	    	           
+	    	           else {
 	    	           String query = "UPDATE `employee` SET `Employee_add`='"+empnewadd+"' WHERE `Employee_Id`="+table.getValueAt(i,0);
 	    	           Statement ps = con.prepareStatement(query);
 	     	           ps.executeUpdate(query);
 	    	           JOptionPane.showMessageDialog(null, "Employee Information Update");
+	    	           con.close();
+                       }
 	            }
 	            else if(j == 3){
 	    	           String empnewtel = JOptionPane.showInputDialog("Enter new Telephone number");
+	    	           if(empnewtel.isEmpty()) {
+	    	            	JOptionPane.showMessageDialog(null, "Please fill the field");
+	    	            }
+	    	           else {
 	    	           String query = "UPDATE `employee` SET `Employee_tel`='"+empnewtel+"' WHERE `Employee_Id`="+table.getValueAt(i,0);
 	    	           Statement ps = con.prepareStatement(query);
 	     	           ps.executeUpdate(query);
 	    	           JOptionPane.showMessageDialog(null, "Employee Information Update");
-	    	           
+	    	           con.close();
+                }
 	            }
 	      
 	            else {

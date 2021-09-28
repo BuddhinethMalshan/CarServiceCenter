@@ -15,6 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -38,6 +39,7 @@ public class Settings {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			
 			public void run() {
 				try {
 					Settings window = new Settings();
@@ -173,6 +175,17 @@ public class Settings {
 		btnback.setForeground(new Color(255, 255, 255));
 		btnback.setBounds(546, 360, 95, 31);
 		panel.add(btnback);
+		
+		JButton btnlogout = new JButton("Log Out");
+		btnlogout.setForeground(new Color(255, 255, 255));
+		btnlogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				logout();
+			}
+		});
+		btnlogout.setBackground(new Color(105, 105, 105));
+		btnlogout.setBounds(546, 26, 95, 31);
+		panel.add(btnlogout);
 	}
 	
 	private void showpwd() {
@@ -258,6 +271,22 @@ public class Settings {
         confpwd.setText("");
         lblpasserr.setText("");
     }
+	
+	public void logout() {
+       
+        if(JOptionPane.showConfirmDialog(new JOptionPane(), "Are you sure you want to logout?", "Confirmation", JOptionPane.OK_CANCEL_OPTION)==0){    
+        	Admin adm = new Admin();
+	        adm.setVisible(true);
+	        frame.setVisible(false);
+	        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+			frame.dispose();
+            }    
+        
+        else{
+    		
+        
+        }
+	}
 
 	public void setVisible(boolean b) {
 		// TODO Auto-generated method stub

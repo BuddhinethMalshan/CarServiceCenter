@@ -31,7 +31,7 @@ import java.awt.event.KeyEvent;
 
 
 
-public class Employee {
+public class Employee extends Admin {
    
    private JFrame frame;
    private  JTable table;

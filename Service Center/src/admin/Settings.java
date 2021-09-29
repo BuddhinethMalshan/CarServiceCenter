@@ -25,7 +25,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-public class Settings {
+public class Settings extends Admin  {
 
 	private JFrame frame;
 	private JPasswordField curpwd;

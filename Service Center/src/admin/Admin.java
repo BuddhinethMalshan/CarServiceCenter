@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -13,6 +14,10 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 
@@ -21,6 +26,13 @@ public class Admin   {
 	
 	
 	private JFrame frame;
+	private static final String username = "root";
+	private static final String password = "";
+	private static final String datacon = "jdbc:mysql://localhost/carservice";
+	
+	Connection con = null;
+    Statement  pst = null;
+	ResultSet rs = null;
 	
 
 	/**
@@ -132,7 +144,7 @@ public class Admin   {
 		});
 		panelemp_2.setForeground(Color.WHITE);
 		panelemp_2.setBackground(new Color(0, 139, 139));
-		panelemp_2.setBounds(785, 90, 192, 118);
+		panelemp_2.setBounds(494, 90, 192, 118);
 		frame.getContentPane().add(panelemp_2);
 		panelemp_2.setLayout(null);
 		
@@ -141,29 +153,6 @@ public class Admin   {
 		lblcus.setForeground(Color.WHITE);
 		lblcus.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panelemp_2.add(lblcus);
-		
-		JPanel panelemp_3 = new JPanel();
-		panelemp_3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				 panelemp_3.setBackground(new Color(102, 205, 170));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				panelemp_3.setBackground(new Color(0, 139, 139));
-			}
-		});
-		panelemp_3.setForeground(Color.WHITE);
-		panelemp_3.setBackground(new Color(0, 139, 139));
-		panelemp_3.setBounds(494, 90, 192, 118);
-		frame.getContentPane().add(panelemp_3);
-		panelemp_3.setLayout(null);
-		
-		JLabel lblServices = new JLabel("Services");
-		lblServices.setBounds(60, 37, 80, 32);
-		lblServices.setForeground(Color.WHITE);
-		lblServices.setFont(new Font("Tahoma", Font.BOLD, 16));
-		panelemp_3.add(lblServices);
 		
 		JPanel panelemp_4 = new JPanel();
 		panelemp_4.addMouseListener(new MouseAdapter(){
@@ -193,12 +182,12 @@ public class Admin   {
 	});
 		panelemp_4.setForeground(Color.WHITE);
 		panelemp_4.setBackground(new Color(0, 139, 139));
-		panelemp_4.setBounds(785, 248, 192, 118);
+		panelemp_4.setBounds(752, 90, 192, 118);
 		frame.getContentPane().add(panelemp_4);
 		panelemp_4.setLayout(null);
 		
-		JLabel lblItems = new JLabel("Items");
-		lblItems.setBounds(59, 43, 84, 33);
+		JLabel lblItems = new JLabel("Items and Service");
+		lblItems.setBounds(21, 23, 161, 65);
 		lblItems.setForeground(Color.WHITE);
 		lblItems.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panelemp_4.add(lblItems);
@@ -253,6 +242,54 @@ public class Admin   {
 		
 		
 	}
+	public void delete()  {
+		try {
+        	Class.forName("com.mysql.cj.jdbc.Driver");
+		    con=DriverManager.getConnection(datacon,username ,password);
+        
+           
+           
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,  e.getMessage());
+        }
+	}
+	public void update() {
+		try {
+        	Class.forName("com.mysql.cj.jdbc.Driver");
+		    con=DriverManager.getConnection(datacon,username ,password);
+        
+           
+           
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,  e.getMessage());
+        }
+	}
+	
+	public void insert() {
+		try {
+        	Class.forName("com.mysql.cj.jdbc.Driver");
+		    con=DriverManager.getConnection(datacon,username ,password);
+        
+           
+           
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,  e.getMessage());
+        }
+	}
+	
+	public void viewDetails(){
+		try {
+        	Class.forName("com.mysql.cj.jdbc.Driver");
+		    con=DriverManager.getConnection(datacon,username ,password);
+        
+           
+           
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,  e.getMessage());
+        }
+		
+	}
+	
 	public void setVisible(boolean b) {
 		Admin window = new Admin();
 		window.frame.setVisible(true);

@@ -3,10 +3,7 @@ package admin;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
@@ -38,6 +35,8 @@ public class Customer extends Admin  {
     private JTextPane txtcusadd;
     private Object[] row ;
     private JLabel lblmsg;
+    private JTextField txtmod;
+    private JTextField txtvnum;
 
 	/****
 	 * Launch the application.
@@ -81,8 +80,9 @@ public class Customer extends Admin  {
 	    model.addColumn("Customer name");
 	    model.addColumn("Customer Address");
 	    model.addColumn("Contect number");
-	    model.addColumn("Vehical type");
-	    
+	    model.addColumn("Vehical Brand");
+	    model.addColumn("Vehical Model");
+	    model.addColumn("Vehical RegNum");
 	    
 	    
 	   
@@ -119,61 +119,75 @@ public class Customer extends Admin  {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Clear");
-		btnNewButton.setBackground(new Color(0, 139, 139));
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBounds(146, 559, 143, 42);
-		panel.add(btnNewButton);
-		
 		JButton btnnewcus = new JButton("New Customer");
 		btnnewcus.setForeground(new Color(255, 255, 255));
 		btnnewcus.setBackground(new Color(0, 139, 139));
-		btnnewcus.setBounds(146, 484, 143, 46);
+		btnnewcus.setBounds(146, 584, 143, 46);
 		panel.add(btnnewcus);
 		
 		txtcustel = new JTextField();
-		txtcustel.setBounds(122, 159, 167, 26);
+		txtcustel.setBounds(122, 133, 167, 32);
 		panel.add(txtcustel);
 		txtcustel.setColumns(10);
 		
 		txtcusveh = new JTextField();
-		txtcusveh.setBounds(122, 242, 167, 42);
+		txtcusveh.setBounds(122, 215, 167, 32);
 		panel.add(txtcusveh);
 		txtcusveh.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Tel-number :");
-		lblNewLabel_2.setBounds(10, 128, 120, 24);
+		lblNewLabel_2.setBounds(10, 111, 120, 24);
 		panel.add(lblNewLabel_2);
-		lblNewLabel_2.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		lblNewLabel_2.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		
-		JLabel lblNewLabel_3 = new JLabel("Vehicle Type :");
-		lblNewLabel_3.setBounds(10, 209, 143, 18);
+		JLabel lblNewLabel_3 = new JLabel("Vehicle Brand :");
+		lblNewLabel_3.setBounds(10, 186, 143, 18);
 		panel.add(lblNewLabel_3);
-		lblNewLabel_3.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		lblNewLabel_3.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		
 		txtcusadd = new JTextPane();
-		txtcusadd.setBounds(122, 345, 167, 72);
+		txtcusadd.setBounds(122, 427, 167, 72);
 		panel.add(txtcusadd);
 		
 		JLabel lblNewLabel_1 = new JLabel("Customer address :");
-		lblNewLabel_1.setBounds(10, 317, 155, 24);
+		lblNewLabel_1.setBounds(10, 392, 155, 24);
 		panel.add(lblNewLabel_1);
-		lblNewLabel_1.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		lblNewLabel_1.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		
 		txtcusname = new JTextField();
-		txtcusname.setBounds(122, 79, 167, 42);
+		txtcusname.setBounds(122, 68, 167, 32);
 		panel.add(txtcusname);
 		txtcusname.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Customer name :");
 		lblNewLabel.setBounds(10, 44, 143, 24);
 		panel.add(lblNewLabel);
-		lblNewLabel.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		lblNewLabel.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		
 		lblmsg = new JLabel("");
-		lblmsg.setBounds(75, 431, 214, 27);
+		lblmsg.setBounds(10, 510, 279, 27);
 		panel.add(lblmsg);
 		lblmsg.setForeground(new Color(255, 0, 0));
+		
+		JLabel lblmod = new JLabel("Vehicle model :");
+		lblmod.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lblmod.setBounds(10, 258, 134, 26);
+		panel.add(lblmod);
+		
+		JLabel lblNewLabel_6 = new JLabel("Vehicle Reg num:");
+		lblNewLabel_6.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lblNewLabel_6.setBounds(10, 326, 127, 27);
+		panel.add(lblNewLabel_6);
+		
+		txtmod = new JTextField();
+		txtmod.setBounds(122, 283, 167, 32);
+		panel.add(txtmod);
+		txtmod.setColumns(10);
+		
+		txtvnum = new JTextField();
+		txtvnum.setBounds(122, 349, 167, 32);
+		panel.add(txtvnum);
+		txtvnum.setColumns(10);
 		btnnewcus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				insert();
@@ -182,11 +196,6 @@ public class Customer extends Admin  {
 				model.setRowCount(0);
 				
 				viewDetails();
-			}
-		});
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				clear();
 			}
 		});
 		
@@ -234,6 +243,17 @@ public class Customer extends Admin  {
 		btnback.setForeground(new Color(255, 255, 255));
 		btnback.setBounds(642, 108, 104, 41);
 		panel_1.add(btnback);
+		
+		JButton btnNewButton = new JButton("Clear");
+		btnNewButton.setBounds(496, 107, 109, 41);
+		panel_1.add(btnNewButton);
+		btnNewButton.setBackground(new Color(102, 205, 170));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clear();
+			}
+		});
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				delete();
@@ -254,14 +274,13 @@ public class Customer extends Admin  {
 		
 		
 		}
-	 private void viewDetails() {
-		   row = new Object[5];
+	 public  void viewDetails() {
+		   row = new Object[7];
 		   try {  
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con=DriverManager.getConnection("jdbc:mysql://localhost/carservice", "root", "");
-				Statement stmt = con.createStatement();
+				super.viewDetails();
+				pst = con.createStatement();
 				String sql="SELECT * FROM `customer` WHERE 1";
-				ResultSet rs=stmt.executeQuery(sql);
+				rs=pst.executeQuery(sql);
 				while (rs.next()) {
 					
 					
@@ -270,6 +289,8 @@ public class Customer extends Admin  {
 					row[2] = rs.getString("customer_add");
 					row[3] = rs.getString("customer_tel");
 					row[4] = rs.getString("customer_vhty");
+					row[5] = rs.getString("customer_vhm");
+					row[6] = rs.getString("customer_vhn");
 					
 					model.addRow(row);
 				}
@@ -281,11 +302,11 @@ public class Customer extends Admin  {
 				}
 	   }
 	 
-	 private void insert() {
+	 public void insert() {
 		   
 		   
 		   int telnum = 0;
-		   String cusname,cusadd,custype;
+		   String cusname,cusadd,custype,vhymod,vhynum;
 
      	    if(txtcusname.getText().length() == 0 ) {
      	    	lblmsg.setText("Please Enter a customer name");
@@ -293,28 +314,46 @@ public class Customer extends Admin  {
      	    else if(!(Pattern.matches("^[a-zA-Z]+$", txtcusname.getText()))) {
      	    	lblmsg.setText("Please Enter a valid name Ex: Johon");
      	    }
-		    else if (txtcusveh.getText().length() == 0) {
-		    	lblmsg.setText("Please Enter Customer Vehicle type");
+     	    else if(txtcustel.getText().length() != 10 || !txtcustel.getText().matches("[0-9]+")) {
+		    	lblmsg.setText("Please Enter Valid Phone number Ex:07xxxxxxxx");
 		    }
-		    
+     	   
+		    else if (txtcusveh.getText().length() == 0 ) {
+		    	lblmsg.setText("Please Enter Customer Vehicle Brand");
+		    }
+		    else if ((txtcusveh.getText().length() > 9)) {
+		    	lblmsg.setText("Please Enter  valid Customer Vehicle Brand");
+		    }
+		    else if (txtmod.getText().length() == 0 ) {
+		    	lblmsg.setText("Please Enter Customer Vehicle Model");
+		    }
+		    else if((txtmod.getText().length() > 9)) {
+		    	lblmsg.setText("Please Enter Valid Customer Vehicle Model");
+		    }
+     	    
+		    else if ((txtvnum.getText().length() == 0)) {
+		    	lblmsg.setText("Please Enter Customer Vehicle Reg Num");
+		    }
+		    else if((txtvnum.getText().length() > 9)) {
+		    	lblmsg.setText("Please Enter  Valid Customer Vehicle Reg Num");
+		    }
+     	    
 		    else if(txtcusadd.getText().length() ==0) {
 		    	lblmsg.setText("Please Enter Customer Address");
 		    }
-		    else if(txtcustel.getText().length() != 10) {
-		    	lblmsg.setText("Please Enter Valid Phone number Ex:07xxxxxxxx");
-		    }
+		    
 		    else {
 		   try {
-			   telnum = Integer.parseInt(txtcustel.getText());
+			   telnum  = Integer.parseInt(txtcustel.getText());
 			   cusname = txtcusname.getText();
-			   cusadd = txtcusadd.getText();
+			   cusadd  = txtcusadd.getText();
 			   custype = txtcusveh.getText();
-			   
-	       	    Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con=DriverManager.getConnection("jdbc:mysql://localhost/carservice", "root", "");
-				String query1  = "INSERT INTO `customer`(`customer_name`, `customer_add`, `customer_tel`, `customer_vhty`) VALUES ('"+cusname+"','"+ cusadd+"',"+0+telnum+",'"+custype+"')";				
-				Statement ps = con.prepareStatement(query1);
-	            ps.executeUpdate(query1);
+			   vhymod  = txtmod.getText();
+			   vhynum  = txtvnum.getText();
+			    super.insert();
+				String query1  = "INSERT INTO `customer`(`customer_name`, `customer_add`, `customer_tel`, `customer_vhty` , `customer_vhm`, `customer_vhn`) VALUES ('"+cusname+"','"+ cusadd+"',"+telnum+",'"+custype+"', '"+vhymod+"', '"+vhynum+"')";				
+				pst = con.prepareStatement(query1);
+	            pst.executeUpdate(query1);
 	            
 	            
 	            JOptionPane.showMessageDialog(null, "Customer " +cusname+  "  Information Update");
@@ -325,6 +364,8 @@ public class Customer extends Admin  {
 	            txtcusadd.setText("");
 	            txtcusveh.setText("");
 	            txtcustel.setText("");
+	            txtmod.setText("");
+	            txtvnum.setText("");
 				} 
 	           
 	        catch (Exception e) {
@@ -332,21 +373,21 @@ public class Customer extends Admin  {
 	       }
 		    }
 	   }
-	  private void delete() {
+	  public void delete() {
 		   int i = table.getSelectedRow();
 		  
 			if(i>=0) {
 				
 				
 		        try {
-		        	Class.forName("com.mysql.cj.jdbc.Driver");
-					Connection con=DriverManager.getConnection("jdbc:mysql://localhost/carservice", "root", "");
+		        	super.delete();
 					String delRow = "delete from customer where customer_id ="+table.getValueAt(i,0);
-		            Statement ps = con.prepareStatement(delRow);
-		            ps.execute(delRow);
+		            pst = con.prepareStatement(delRow);
+		            pst.execute(delRow);
 		           
 		            JOptionPane.showMessageDialog(null, "Customer  " +table.getValueAt(i,1) +" Deleted");
 		            model.removeRow(i);
+		            con.close();
 		        } catch (Exception e) {
 		            JOptionPane.showMessageDialog(null,  e.getMessage());
 		        }
@@ -356,82 +397,114 @@ public class Customer extends Admin  {
 			}
 		   
 	   }
-      private void update() {
+      public void update() {
 	      
 	      int i = table.getSelectedRow();
 	      int j = table.getSelectedColumn();
 	      if(i>=0) {
 		    
 	    	  try {
-	    		  Class.forName("com.mysql.cj.jdbc.Driver");
-         		  Connection con=DriverManager.getConnection("jdbc:mysql://localhost/carservice", "root", "");
+	    		  super.update();
 	            if(j == 1) {
 	    	  
 	    	          String cusnewname = JOptionPane.showInputDialog("Enter new name");
-                        if(cusnewname.isEmpty() || !(Pattern.matches("^[a-zA-Z]+$",cusnewname ))) {
-                        	 JOptionPane.showMessageDialog(null, "Please fill the field");
+                        if((cusnewname != null) && (cusnewname.length() > 0) && (Pattern.matches("^[a-zA-Z]+$",cusnewname ))) {
+                        	String query = "UPDATE `customer` SET `customer_name`='"+cusnewname+"' WHERE `customer_id`="+table.getValueAt(i,0);
+      	    	           pst = con.prepareStatement(query);
+      	     	           pst.executeUpdate(query);
+      	    	           JOptionPane.showMessageDialog(null, "Customer Information Update");
+      	    	           con.close();
                         	
                         }
                         else {
-                           String query = "UPDATE `customer` SET `customer_name`='"+cusnewname+"' WHERE `customer_id`="+table.getValueAt(i,0);
-     	    	           Statement ps = con.prepareStatement(query);
-     	     	           ps.executeUpdate(query);
-     	    	           JOptionPane.showMessageDialog(null, "Customer Information Update");
-     	    	           con.close();
-                        }
-	    	           
-	    	           
+                        	JOptionPane.showMessageDialog(null, "Please fill the field with valid value");
+                        }    
 	    	  
 	            }
 	            else if(j == 2){
 	            	  
 	    	           String cusnewadd = JOptionPane.showInputDialog("Enter new Address");
-	    	            if(cusnewadd.isEmpty()) {
-	    	            	JOptionPane.showMessageDialog(null, "Please fill the field");
+	    	            if((cusnewadd != null) && (cusnewadd.length() > 0)) {
+	    	               String query = "UPDATE `customer` SET `customer_add`='"+cusnewadd+"' WHERE `customer_id`="+table.getValueAt(i,0);
+	 	    	           pst = con.prepareStatement(query);
+	 	     	           pst.executeUpdate(query);
+	 	    	           JOptionPane.showMessageDialog(null, "Customer Information Update");
+	 	    	           con.close();
+	    	            	
 	    	            }
 	    	            else {
-	    	           String query = "UPDATE `customer` SET `customer_add`='"+cusnewadd+"' WHERE `customer_id`="+table.getValueAt(i,0);
-	    	           Statement ps = con.prepareStatement(query);
-	     	           ps.executeUpdate(query);
-	    	           JOptionPane.showMessageDialog(null, "Customer Information Update");
-	    	           con.close();
+	    	               JOptionPane.showMessageDialog(null, "Please fill the field");
 	    	            }
+	    	            
+	    	           
 	            }
 	            else if(j == 3){
 	            	
 	    	           String cusnewtel = JOptionPane.showInputDialog("Enter new Telephone number");
-	    	           if(cusnewtel.isEmpty()) {
-	    	        	   JOptionPane.showMessageDialog(null, "Please fill the field");
-	    	           }
-	    	           else {
+	    	           if((cusnewtel != null) && (cusnewtel.length() > 0) && cusnewtel.matches("[0-9]+") && cusnewtel.length() == 10) {
 	    	        	   String query = "UPDATE `customer` SET `customer_tel`='"+cusnewtel+"' WHERE `customer_id`="+table.getValueAt(i,0);
-		    	           Statement ps = con.prepareStatement(query);
-		     	           ps.executeUpdate(query);
+		    	           pst = con.prepareStatement(query);
+		     	           pst.executeUpdate(query);
 		    	           JOptionPane.showMessageDialog(null, "Customer Information Update");   
 		    	           con.close();
 	    	           }
-	    	           
-	    	           
-	            }
-	            else if(j == 4){
-	    	           String cusvehtype = JOptionPane.showInputDialog("Enter new Vhicle Type");
-	    	           if(cusvehtype.isEmpty()) {
+	    	           else {
 	    	        	   JOptionPane.showMessageDialog(null, "Please fill the field");
 	    	           }
-	    	           else {
+	    	           
+	    	               
+	            }
+	            else if(j == 4){
+	    	           String cusvehtype = JOptionPane.showInputDialog("Enter new Vhicle Brand");
+	    	          
+	    	           if((cusvehtype != null) && (cusvehtype.length() > 0) && (cusvehtype.length() < 9)) {
 	    	        	   String query = "UPDATE `customer` SET `customer_vhty`='"+cusvehtype+"' WHERE `customer_id`="+table.getValueAt(i,0);
-		    	           Statement ps = con.prepareStatement(query);
-		     	           ps.executeUpdate(query);
+		    	           pst = con.prepareStatement(query);
+		     	           pst.executeUpdate(query);
 		    	           JOptionPane.showMessageDialog(null, "Customer Information Update"); 
 		    	           con.close();
-	    	           }
+	    	            	
+	    	            }
+	    	            else {
+	    	               JOptionPane.showMessageDialog(null, "Please fill the field");
+	    	            }
 	    	           
+	    	          }
+	            else if(j == 5){
+	    	           String cusvehmod = JOptionPane.showInputDialog("Enter new Vhicle Model");
+	    	          
+	    	           if((cusvehmod != null) && (cusvehmod.length() > 0) && (cusvehmod.length() <9)) {
+	    	        	   String query = "UPDATE `customer` SET `customer_vhm`='"+cusvehmod+"' WHERE `customer_id`="+table.getValueAt(i,0);
+		    	           pst = con.prepareStatement(query);
+		     	           pst.executeUpdate(query);
+		    	           JOptionPane.showMessageDialog(null, "Customer Information Update"); 
+		    	           con.close();
+	    	            	
+	    	            }
+	    	            else {
+	    	               JOptionPane.showMessageDialog(null, "Please fill the field");
+	    	            }
 	    	           
+	    	          }
+	            else if(j == 6){
+	    	           String cusvehrenum = JOptionPane.showInputDialog("Enter new Vhicle Reg num");
+	    	          
+	    	           if((cusvehrenum != null) && (cusvehrenum.length() > 0) && (cusvehrenum.length() < 9)) {
+	    	        	   String query = "UPDATE `customer` SET `customer_vhn`='"+cusvehrenum+"' WHERE `customer_id`="+table.getValueAt(i,0);
+		    	           pst = con.prepareStatement(query);
+		     	           pst.executeUpdate(query);
+		    	           JOptionPane.showMessageDialog(null, "Customer Information Update"); 
+		    	           con.close();
+	    	            	
+	    	            }
+	    	            else {
+	    	               JOptionPane.showMessageDialog(null, "Please fill the field");
+	    	            }
 	    	           
-	            }
+	    	          }
 	      
 	            else {
-	            	JOptionPane.showMessageDialog(frame,"Please select customer name address or telephone number ");
+	            	JOptionPane.showMessageDialog(frame,"Please select Cell for update ");
 			    }
 	            
 	       }
@@ -443,7 +516,7 @@ public class Customer extends Admin  {
 	         
            
 	       else {
-	    	  JOptionPane.showMessageDialog(frame,"Please select customer name address or telephone number ");
+	    	  JOptionPane.showMessageDialog(frame,"Please select Cell for update ");
 	    	  
 	       }
 	
@@ -455,12 +528,12 @@ public class Customer extends Admin  {
             txtcusadd.setText("");
             txtcusveh.setText("");
             txtcustel.setText("");
+            txtmod.setText("");
+            txtvnum.setText("");
 }
 
 public void setVisible(boolean b) {
 	// TODO Auto-generated method stub
 	
 }
-
-
 }

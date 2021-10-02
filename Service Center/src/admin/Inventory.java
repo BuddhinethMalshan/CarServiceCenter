@@ -16,16 +16,15 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+
+import javax.swing.JRadioButton;
 
 public class Inventory extends Admin  {
 
@@ -36,9 +35,10 @@ public class Inventory extends Admin  {
 	private JTextField txtname;
 	private JLabel lblmsg;
 	private Object[] row ;
-	
-	
+	private ButtonGroup group;
+	private JRadioButton rbtnitem, rbtnservice;
 	private DefaultTableModel model;
+	private JTextField txtcat;
 
 	/***
 	 * Launch the application.
@@ -83,15 +83,14 @@ public class Inventory extends Admin  {
 		
 		table = new JTable();
 		model = new DefaultTableModel();
-		Object[] columns = {"Item ID" , "Item name" , "Item Quantity" ,"Item Price"};
+		Object[] columns = {" " , " " , " " ,""};
 		model.setColumnIdentifiers(columns);
 		table.setAutoCreateRowSorter(true);
 		table.setModel(model);
-		viewDetails();		
-	
-		table.getColumnModel().getColumn(0).setPreferredWidth(6);
+	    table.getColumnModel().getColumn(0).setPreferredWidth(6);
 		table.getColumnModel().getColumn(3).setPreferredWidth(10);
 		scrollPane.setViewportView(table);
+		
 		
 		JPanel panel_1 = new JPanel();
 		
@@ -102,64 +101,40 @@ public class Inventory extends Admin  {
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Item Name :");
+		JLabel lblNewLabel = new JLabel("Item/ Service Name :");
 		lblNewLabel.setFont(new Font("Arial Black", Font.PLAIN, 14));
 		lblNewLabel.setForeground(new Color(0, 0, 0));
-		lblNewLabel.setBounds(10, 61, 119, 22);
+		lblNewLabel.setBounds(10, 117, 171, 22);
 		panel_1.add(lblNewLabel);
 		
-		JLabel lbqty = new JLabel("Item Quantity :");
+		JLabel lbqty = new JLabel("Item  Quantity :");
 		lbqty.setFont(new Font("Arial Black", Font.PLAIN, 14));
-		lbqty.setBounds(10, 145, 119, 23);
+		lbqty.setBounds(10, 201, 193, 23);
 		panel_1.add(lbqty);
 		
-		JLabel lblprice = new JLabel("Item Price :");
+		JLabel lblprice = new JLabel("Item/Service Price :");
 		lblprice.setFont(new Font("Arial Black", Font.PLAIN, 14));
-		lblprice.setBounds(10, 229, 99, 20);
+		lblprice.setBounds(10, 366, 179, 20);
 		panel_1.add(lblprice);
 		
 		txtqty = new JTextField();
-		txtqty.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				 if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9') {
-					    txtqty.setEditable(true);
-					    lblmsg.setText("");
-				    } else {
-				    	txtqty.setEditable(true);
-				        lblmsg.setText("Enter only Quantity");
-				    }
-				
-			}
-		});
+		
+		
 		txtqty.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtqty.setBounds(77, 179, 126, 39);
+		txtqty.setBounds(77, 235, 126, 39);
 		panel_1.add(txtqty);
 		txtqty.setColumns(10);
 		
 		txtprice = new JTextField();
-		txtprice.addKeyListener(new KeyAdapter() {
-			
-			
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9') {
-				    txtprice.setEditable(true);
-				    lblmsg.setText("");
-			    } else {
-			    	txtprice.setEditable(true);
-			        lblmsg.setText("Enter price only ");
-			    }
-			}
-		});
+		
 		txtprice.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtprice.setBounds(77, 271, 126, 39);
+		txtprice.setBounds(77, 397, 126, 39);
 		panel_1.add(txtprice);
 		txtprice.setColumns(10);
 		
 		txtname = new JTextField();
 		txtname.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtname.setBounds(77, 94, 126, 40);
+		txtname.setBounds(77, 150, 126, 40);
 		panel_1.add(txtname);
 		txtname.setColumns(10);
 		
@@ -175,7 +150,7 @@ public class Inventory extends Admin  {
 				viewDetails();
 			}
 		});
-		btnnewitem.setBounds(77, 374, 119, 39);
+		btnnewitem.setBounds(84, 493, 119, 39);
 		panel_1.add(btnnewitem);
 		
 		JButton btnClear = new JButton("Clear");
@@ -186,14 +161,83 @@ public class Inventory extends Admin  {
 			}
 		});
 		btnClear.setBackground(new Color(0, 139, 139));
-		btnClear.setBounds(77, 448, 119, 39);
+		btnClear.setBounds(84, 557, 119, 39);
 		panel_1.add(btnClear);
 		
 		lblmsg = new JLabel("");
 		lblmsg.setForeground(new Color(255, 0, 0));
-		lblmsg.setBounds(77, 336, 171, 22);
+		lblmsg.setBounds(77, 447, 171, 22);
 		panel_1.add(lblmsg);
 		
+		rbtnitem = new JRadioButton("Item");
+		rbtnitem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table = new JTable();
+				model = new DefaultTableModel();
+				Object[] columns = {"Item ID" , "Item name" , "Item Quantity" ,"Item Price"};
+				model.setColumnIdentifiers(columns);
+				table.setAutoCreateRowSorter(true);
+				table.setModel(model);
+				viewDetails();		
+			
+				table.getColumnModel().getColumn(0).setPreferredWidth(6);
+				table.getColumnModel().getColumn(3).setPreferredWidth(10);
+				scrollPane.setViewportView(table);
+				
+				txtqty.setEnabled(true);
+				txtcat.setText("Category zero");
+				txtcat.setEnabled(false);
+				
+			}
+		});
+		rbtnitem.setForeground(Color.WHITE);
+		rbtnitem.setBackground(new Color(0, 139, 139));
+		rbtnitem.setBounds(16, 62, 109, 23);
+		
+		panel_1.add(rbtnitem);
+		
+		rbtnservice = new JRadioButton("Service");
+		rbtnservice.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table = new JTable();
+				model = new DefaultTableModel();
+				Object[] columns = {"Service ID" , "Service name" , "Service category" ,"Service Price"};
+	     		model.setColumnIdentifiers(columns);
+				table.setAutoCreateRowSorter(true);
+				table.setModel(model);
+				viewDetails();		
+		
+				table.getColumnModel().getColumn(0).setPreferredWidth(6);
+				table.getColumnModel().getColumn(3).setPreferredWidth(10);
+				scrollPane.setViewportView(table);
+				
+				txtcat.setEnabled(true);
+				txtqty.setText("0");
+				txtqty.setEnabled(false);
+				
+				
+			}
+		});
+		rbtnservice.setBackground(new Color(0, 139, 139));
+		rbtnservice.setForeground(Color.WHITE);
+		rbtnservice.setBounds(139, 62, 109, 23);
+		panel_1.add(rbtnservice);
+		
+		group = new ButtonGroup();
+		group.add(rbtnservice);
+		group.add(rbtnitem);
+		
+		JLabel lblser = new JLabel("Service Category :");
+		lblser.setFont(new Font("Arial Black", Font.BOLD, 14));
+		lblser.setBounds(10, 285, 147, 22);
+		panel_1.add(lblser);
+		
+		txtcat = new JTextField();
+		txtcat.setBounds(77, 318, 126, 37);
+		panel_1.add(txtcat);
+		txtcat.setColumns(10);
+		
+	
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(0, 139, 139));
 		panel_2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventory", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 1, 17), new java.awt.Color(255, 255, 255)));
@@ -252,45 +296,58 @@ public class Inventory extends Admin  {
 		btnback.setBounds(656, 54, 110, 39);
 		panel_2.add(btnback);
 	}
-	private void insert() {
+	public void insert() {
 		   int itemqty = 0;
 		   int itemprice = 0;
-		   String itemname;
+		   
+		   String itemname,itemserv;
 		   
 		   
 		   
 		   if(txtname.getText().length() == 0 ) {
-		    	lblmsg.setText("Please Enter a Item name");
+		    	lblmsg.setText("Please Enter a Item or Service name");
 		    }
 		    
 		    
-		    else if(txtqty.getText().length() ==0) {
-		    	lblmsg.setText("Please Enter Item quantity");
+		    else if(txtqty.getText().length() ==0 ||  !txtqty.getText().matches("[0-9]+")) {
+		    	lblmsg.setText("Please Enter Valid Quantity");
 		    }
-		    else if(txtprice.getText().length() ==0) {
-		    	lblmsg.setText("Please Enter Price");
+		    else if( txtcat.getText().length() == 0) {
+		    	lblmsg.setText("Please Enter Category");
+		    }
+		    else if(txtprice.getText().length() ==0 || !txtprice.getText().matches("[0-9]+")) {
+		    	lblmsg.setText("Please Enter Valid Price");
 		    }
 		    else {
 		   try {
-			   
+			   itemserv = txtcat.getText();
 			   itemqty = Integer.parseInt(txtqty.getText());
 			   itemname = txtname.getText();
 			   itemprice = Integer.parseInt(txtprice.getText());
-	       	    Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con=DriverManager.getConnection("jdbc:mysql://localhost/carservice", "root", "");
+	       	    
+			    super.insert();
+			    
+			    if (rbtnitem.isSelected()) {
+			    	
+			    	
+			    	String query1 = "INSERT INTO `item`( `Item_name`, `item_qty`, `item_price`) VALUES ('"+itemname +"',"+itemqty+","+itemprice+")";
+			    	pst = con.prepareStatement(query1);
+		            pst.executeUpdate(query1);
+		            JOptionPane.showMessageDialog(null, "Item Information Update");
+			    }
+			    
+			    else if(rbtnservice.isSelected()) {
+			    	String query1 = "INSERT INTO `service`( `servicename`, `servicecat`, `serviceprice`) VALUES ('"+itemname +"','"+itemserv+"',"+itemprice+")";
+			    	pst = con.prepareStatement(query1);
+		            pst.executeUpdate(query1);
+		            JOptionPane.showMessageDialog(null, "Service Information Update");
+			    }
 				 
-				String query1 = "INSERT INTO `item`( `Item_name`, `item_qty`, `item_price`) VALUES ('"+itemname +"',"+itemqty+","+itemprice+")";
-
-			     
-				
-	             Statement ps = con.prepareStatement(query1);
-	             ps.executeUpdate(query1);
-	             
-	             JOptionPane.showMessageDialog(null, "Item Information Update");
-	             lblmsg.setText("");
+				 lblmsg.setText("");
                  txtname.setText("");
                  txtqty.setText("");
                  txtprice.setText("");
+                 txtcat.setText("");
                  con.close();
 	             
 	             
@@ -302,27 +359,47 @@ public class Inventory extends Admin  {
 		   }
 	   }
 	
-	private void viewDetails() {
+	public void viewDetails() {
 		row = new Object[4];
 		 try {  
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con=DriverManager.getConnection("jdbc:mysql://localhost/carservice", "root", "");
-			    Statement stmt = con.createStatement();				
-			    String sql="SELECT * FROM `item` WHERE 1";
-				ResultSet rs=stmt.executeQuery(sql);
-				while (rs.next()) {
-					
-					row[0] = rs.getString("item_id");
-					row[1] = rs.getString("Item_name");
-					row[2] = rs.getString("item_qty");
-					row[3] = rs.getString("item_price");
-					model.addRow(row);
-					}
+				super.viewDetails();
+			    
+				
+				 if (rbtnitem.isSelected()) {
+				    	
+			            pst = con.createStatement();				
+					    String sql="SELECT * FROM `item` WHERE 1";
+						rs=pst.executeQuery(sql);
+						while (rs.next()) {
+							
+							row[0] = rs.getString("item_id");
+							row[1] = rs.getString("Item_name");
+							row[2] = rs.getString("item_qty");
+							row[3] = rs.getString("item_price");
+							model.addRow(row);
+							}
+				    }
+				    
+				   else if(rbtnservice.isSelected()) {
+				    	pst = con.createStatement();			
+					    String sql="SELECT * FROM `service` WHERE 1";
+						rs=pst.executeQuery(sql);
+						while (rs.next()) {
+							
+							row[0] = rs.getString("serviceID");
+							row[1] = rs.getString("servicename");
+							row[2] = rs.getString("servicecat");
+							row[3] = rs.getString("serviceprice");
+							model.addRow(row);
+							}
+				    }
 				con.close();
 			 } 			
 		 catch(Exception e1) {
 				System.out.print(e1);
 			 }
+		 
+		 
 	}
 	
 	private void clear() {
@@ -330,104 +407,184 @@ public class Inventory extends Admin  {
         txtname.setText("");
         txtqty.setText("");
         txtprice.setText("");
+        txtcat.setText("");
         
 	}
 	
-	private void delete() {
+	public void delete() {
 		   int i = table.getSelectedRow();
-		  
+		    
 			if(i>=0) {
 				
+				 if (rbtnitem.isSelected()) {
+				    	
+					 try {
+				        	super.delete();
+							String delRow = "delete from item where item_id ="+table.getValueAt(i,0);
+				            pst = con.prepareStatement(delRow);
+				            pst.execute(delRow);
+				           
+				            JOptionPane.showMessageDialog(null, "Item  " +table.getValueAt(i,1) +" Deleted");
+				            model.removeRow(i);
+				            con.close();
+				        } catch (Exception e) {
+				            JOptionPane.showMessageDialog(null,  e.getMessage());
+				        }
+				    }
+				    
+				   else if(rbtnservice.isSelected()) {
+					   try {
+				        	super.delete();
+							String delRow = "delete from service where serviceID ="+table.getValueAt(i,0);
+				            pst = con.prepareStatement(delRow);
+				            pst.execute(delRow);
+				           
+				            JOptionPane.showMessageDialog(null, "Service  " +table.getValueAt(i,1) +" Deleted");
+				            model.removeRow(i);
+				            con.close();
+				        } catch (Exception e) {
+				            JOptionPane.showMessageDialog(null,  e.getMessage());
+				        }
+				    }
+				 
 				
-		        try {
-		        	Class.forName("com.mysql.cj.jdbc.Driver");
-					Connection con=DriverManager.getConnection("jdbc:mysql://localhost/carservice", "root", "");
-					String delRow = "delete from item where item_id ="+table.getValueAt(i,0);
-		            Statement ps = con.prepareStatement(delRow);
-		            ps.execute(delRow);
-		           
-		            JOptionPane.showMessageDialog(null, "Item  " +table.getValueAt(i,1) +" Deleted");
-		            model.removeRow(i);
-		        } catch (Exception e) {
-		            JOptionPane.showMessageDialog(null,  e.getMessage());
-		        }
+		       
 			}
 			else {
-				JOptionPane.showMessageDialog(frame,"Please select a Item");
+				JOptionPane.showMessageDialog(frame,"Please select a Row");
 			}
 		   
 	   }
 	
-	private void update() {
+	public void update() {
 	      
 	      int i = table.getSelectedRow();
 	      int j = table.getSelectedColumn();
 	      if(i>=0) {
 		    
-	    	  try {
-	    		       Class.forName("com.mysql.cj.jdbc.Driver");
-       		           Connection con=DriverManager.getConnection("jdbc:mysql://localhost/carservice", "root", "");
-	            if(j == 1) {
-	    	  
-	    	           String itemnewname = JOptionPane.showInputDialog("Enter new name");
-	    	           if(itemnewname.isEmpty()) {
-	    	        	   JOptionPane.showMessageDialog(null, "Please fill the field");
-	    	           }
-	    	           
-	    	           else {
-	    	           String query = "UPDATE `item` SET `Item_name`='"+itemnewname+"' WHERE `item_id`="+table.getValueAt(i,0);
-	    	           Statement ps = con.prepareStatement(query);
-	     	           ps.executeUpdate(query);
-	    	           JOptionPane.showMessageDialog(null, "Item new name Update");
-	    	           con.close();
-	    	           }
-	    	           
-	    	  
-	            }
-	            else if(j == 2){
-	    	           String itemnewqty = JOptionPane.showInputDialog("Enter new Quantity");
-	    	           if(itemnewqty.isEmpty()) {
-	    	        	   JOptionPane.showMessageDialog(null, "Please fill the field");
-	    	           }
-	    	           
-	    	           else {
-	    	           String query = "UPDATE `employee` SET `item_qty`='"+itemnewqty+"' WHERE `item_id`="+table.getValueAt(i,0);
-	    	           Statement ps = con.prepareStatement(query);
-	     	           ps.executeUpdate(query);
-	    	           JOptionPane.showMessageDialog(null, "Item new quantity Update");
-	    	           con.close();
-	    	           }
-	            }
-	            else if(j == 3){
-	    	           String itemnewprice = JOptionPane.showInputDialog("Enter new Price");
-	    	           if(itemnewprice.isEmpty()) {
-	    	        	   JOptionPane.showMessageDialog(null, "Please fill the field");
-	    	           }
-	    	           
-	    	           else {
-	    	           String query = "UPDATE `employee` SET `item_price`='"+itemnewprice+"' WHERE `item_id`="+table.getValueAt(i,0);
-	    	           Statement ps = con.prepareStatement(query);
-	     	           ps.executeUpdate(query);
-	    	           JOptionPane.showMessageDialog(null, "Item new price Update");
-	    	           con.close();
-	    	           }
-	    	           
-	            }
-	      
-	            else {
-	            	JOptionPane.showMessageDialog(frame,"Please select item  name, quantity or price ");
-			    }
-	            
-	       }
-	    	  catch(Exception e) {
+	    	   try {
+	    		  super.update();
+	    		  
+	    		  if (rbtnitem.isSelected()) {
+	    			  
+	    			  if(j == 1) {
+	    		    	  
+		    	           String itemnewname = JOptionPane.showInputDialog("Enter new name");
+		    	           if ((itemnewname != null) && (itemnewname.length() > 0)) {
+		    	        	   String query = "UPDATE `item` SET `Item_name`='"+itemnewname+"' WHERE `item_id`="+table.getValueAt(i,0);
+			    	           pst = con.prepareStatement(query);
+			     	           pst.executeUpdate(query);
+			    	           JOptionPane.showMessageDialog(null, "Item new name Update");
+			    	           con.close();
+		    	           }
+		    	           else {
+		    	        	   JOptionPane.showMessageDialog(null, "Please fill the field");
+		    	           }
+		    	           
+		    	  
+		              }
+		              else if(j == 2){
+		    	           String itemnewqty = JOptionPane.showInputDialog("Enter new Quantity");
+		    	           if ((itemnewqty != null) && (itemnewqty.length() > 0) && itemnewqty.matches("[0-9]+")) {
+		    	        	   String query = "UPDATE `item` SET `item_qty`='"+itemnewqty+"' WHERE `item_id`="+table.getValueAt(i,0);
+			    	           pst = con.prepareStatement(query);
+			     	           pst.executeUpdate(query);
+			    	           JOptionPane.showMessageDialog(null, "Item new quantity Update");
+			    	           con.close();
+		    	           }
+		    	           else {
+		    	        	   JOptionPane.showMessageDialog(null, "Please fill the field");
+		    	           }
+		    	           
+		    	           
+		              }
+		               else if(j == 3){
+		    	           String itemnewprice = JOptionPane.showInputDialog("Enter new Price");
+		    	           if ((itemnewprice != null) && (itemnewprice.length() > 0) && itemnewprice.matches("[0-9]+")) {
+		    	        	   String query = "UPDATE `item` SET `item_price`='"+itemnewprice+"' WHERE `item_id`="+table.getValueAt(i,0);
+			    	           pst = con.prepareStatement(query);
+			     	           pst.executeUpdate(query);
+			    	           JOptionPane.showMessageDialog(null, "Item new price Update");
+			    	           con.close();
+		    	           }
+		    	           else {
+		    	        	   JOptionPane.showMessageDialog(null, "Please fill the field");
+		    	           }
+		    	           
+		                }
+		      
+		               else {
+		            	JOptionPane.showMessageDialog(frame,"Please select item  name, quantity or price ");
+				       }
+				    	
+						 
+					    }
+					    
+					else if(rbtnservice.isSelected()) {
+						
+						if(j == 1) {
+		    		    	  
+			    	           String itemnewname = JOptionPane.showInputDialog("Enter new name");
+			    	           if ((itemnewname != null) && (itemnewname.length() > 0)) {
+			    	        	   String query = "UPDATE `service` SET `servicename`='"+itemnewname+"' WHERE `serviceID`="+table.getValueAt(i,0);
+				    	           pst = con.prepareStatement(query);
+				     	           pst.executeUpdate(query);
+				    	           JOptionPane.showMessageDialog(null, "Service new name Update");
+				    	           con.close();
+			    	           }
+			    	           else {
+			    	        	   JOptionPane.showMessageDialog(null, "Please fill the field");
+			    	           }
+			    	           
+			    	  
+			              }
+			              else if(j == 2){
+			    	           String itemnewcat = JOptionPane.showInputDialog("Enter new Category");
+			    	           if ((itemnewcat != null) && (itemnewcat.length() > 0)) {
+			    	        	   String query = "UPDATE `service` SET `servicecat`='"+itemnewcat+"' WHERE `serviceID`="+table.getValueAt(i,0);
+				    	           pst = con.prepareStatement(query);
+				     	           pst.executeUpdate(query);
+				    	           JOptionPane.showMessageDialog(null, "Service new category Update");
+				    	           con.close();
+			    	           }
+			    	           else {
+			    	        	   JOptionPane.showMessageDialog(null, "Please fill the field");
+			    	           }
+			    	           
+			    	           
+			              }
+			               else if(j == 3){
+			    	           String itemnewprice = JOptionPane.showInputDialog("Enter new Price");
+			    	           if ((itemnewprice != null) && (itemnewprice.length() > 0) && itemnewprice.matches("[0-9]+") ) {
+			    	        	   String query = "UPDATE `service` SET `serviceprice`='"+itemnewprice+"' WHERE `serviceID`="+table.getValueAt(i,0);
+				    	           pst = con.prepareStatement(query);
+				     	           pst.executeUpdate(query);
+				    	           JOptionPane.showMessageDialog(null, "service new price Update");
+				    	           con.close();
+			    	           }
+			    	           else {
+			    	        	   JOptionPane.showMessageDialog(null, "Please fill the field");
+			    	           }
+			    	           
+			                }
+			      
+			               else {
+			            	JOptionPane.showMessageDialog(frame,"Please select service  name, catergory or price ");
+					       }
+					    	
+							 
+						    }
+						   
+						   
+					}
+	    	   catch(Exception e) {
 		            JOptionPane.showMessageDialog(null,  e.getMessage());
 		        }
-	         }
+	    		  
+	       }
 	         
-	         
-         
 	       else {
-	    	  JOptionPane.showMessageDialog(frame,"Please select item  name, quantity or price ");
+	    	  JOptionPane.showMessageDialog(frame,"Please select cell for update ");
 	       }
 	
 		   

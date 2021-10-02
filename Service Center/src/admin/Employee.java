@@ -14,10 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -26,8 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.WindowConstants;
 import javax.swing.JPanel;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+
 
 
 
@@ -41,7 +37,7 @@ public class Employee extends Admin {
    private JTextField txttel;
    private JTextPane txtadd ;
    private  JLabel lblmsg;
- //Constucter
+ 
     Employee()
     {
        
@@ -50,7 +46,7 @@ public class Employee extends Admin {
         model = new DefaultTableModel();
         frame = new JFrame();
         frame.setTitle("Employee Details");
-        //frame.getContentPane().setBackground(new Color(0,0,0));
+        
         frame.getContentPane().setForeground(Color.WHITE);
         frame.setBounds(100,100,1083,694);
         frame.getContentPane().setLayout(null);
@@ -163,13 +159,13 @@ public class Employee extends Admin {
         JButton btnNewButton = new JButton("Clear");
         btnNewButton.setBackground(new Color(0, 139, 139));
         btnNewButton.setForeground(new Color(255, 255, 255));
-        btnNewButton.setBounds(114, 516, 116, 40);
+        btnNewButton.setBounds(114, 498, 116, 40);
         panel_1.add(btnNewButton);
         
         JButton btninsert = new JButton("New Employee ");
         btninsert.setForeground(new Color(255, 255, 255));
         btninsert.setBackground(new Color(0, 139, 139));
-        btninsert.setBounds(114, 426, 123, 40);
+        btninsert.setBounds(114, 447, 123, 40);
         panel_1.add(btninsert);
         
         txtadd = new JTextPane();
@@ -184,18 +180,6 @@ public class Employee extends Admin {
         txt_name.setColumns(10);
         
         txttel = new JTextField();
-        txttel.addKeyListener(new KeyAdapter() {
-        	@Override
-        	public void keyPressed(KeyEvent e) {
-        		if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9') {
-				    txttel.setEditable(true);
-				    lblmsg.setText("");
-			    } else {
-			    	txttel.setEditable(true);
-			        lblmsg.setText("Enter Valid number ");
-			    }
-        	}
-        });
         txttel.setBounds(113, 181, 176, 34);
         panel_1.add(txttel);
         txttel.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -207,7 +191,7 @@ public class Employee extends Admin {
         lbltel.setFont(new Font("Arial Black", Font.PLAIN, 14));
         
         lblmsg = new JLabel("");
-        lblmsg.setBounds(71, 380, 218, 27);
+        lblmsg.setBounds(10, 380, 279, 56);
         panel_1.add(lblmsg);
         lblmsg.setForeground(new Color(255, 0, 0));
         btninsert.addActionListener(new ActionListener() {
@@ -226,14 +210,13 @@ public class Employee extends Admin {
         frame.revalidate();
         frame.setVisible(true);
     }
-   private void viewDetails() {
+   public void viewDetails() {
 	   row = new Object[4];
 	   try {  
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost/carservice", "root", "");
-			Statement stmt = con.createStatement();
+			super.viewDetails();
+		    pst= con.createStatement();
 			String sql="SELECT * FROM `employee` WHERE 1";
-			ResultSet rs=stmt.executeQuery(sql);
+			rs=pst.executeQuery(sql);
 			while (rs.next()) {
 				
 				row[0] = rs.getString("Employee_Id");
@@ -250,21 +233,22 @@ public class Employee extends Admin {
 			}
    }
    
-   private void delete() {
+  public void delete() {
 	   int i = table.getSelectedRow();
-	  
+	   
 		if(i>=0) {
 			
 			
 	        try {
-	        	Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con=DriverManager.getConnection("jdbc:mysql://localhost/carservice", "root", "");
-				String delRow = "delete from employee where Employee_Id ="+table.getValueAt(i,0);
-	            Statement ps = con.prepareStatement(delRow);
-	            ps.execute(delRow);
+	        	
+	        	super.delete();
+                String delRow = "delete from employee where Employee_Id ="+table.getValueAt(i,0);
+	            pst = con.prepareStatement(delRow);
+	            pst.execute(delRow);
 	           
 	            JOptionPane.showMessageDialog(null, "Employee" +table.getValueAt(i,1) +"Deleted");
 	            model.removeRow(i);
+	            con.close();
 	        } catch (Exception e) {
 	            JOptionPane.showMessageDialog(null,  e.getMessage());
 	        }
@@ -275,11 +259,7 @@ public class Employee extends Admin {
 	   
    }
    
-   private void insert() {
-	   
-	 
-
- 	    
+  public void insert() {
 	   
 	   int telnum = 0;
 	   String empname,empadd;
@@ -290,11 +270,12 @@ public class Employee extends Admin {
 	    	lblmsg.setText("Please Enter a valid name Ex: Johon");
 	    }
 	    
+	    
+	    else if(txttel.getText().length() != 10 || !txttel.getText().matches("[0-9]+")) {
+	    	lblmsg.setText("Please Enter Valid Phone number Ex:07xxxxxxxx");
+	    	}
 	    else if(txtadd.getText().length() ==0) {
 	    	lblmsg.setText("Please Enter Employee Address");
-	    }
-	    else if(txttel.getText().length() != 10) {
-	    	lblmsg.setText("Please Enter Valid Phone number Ex:07xxxxxxxx");
 	    }
 	   
 	    else {
@@ -302,11 +283,11 @@ public class Employee extends Admin {
 		            telnum = Integer.parseInt(txttel.getText());
 		            empname = txt_name.getText();
 		            empadd = txtadd.getText();
-       	            Class.forName("com.mysql.cj.jdbc.Driver");
-			        Connection con=DriverManager.getConnection("jdbc:mysql://localhost/carservice", "root", "");
+       	            
+		            super.insert();
 			        String query1 = "INSERT INTO `employee`( `Employee_name`, `Employee_add`, `Employee_tel`) VALUES ('"+empname+"','"+empadd+"',"+telnum+")";
-                    Statement ps = con.prepareStatement(query1);
-                    ps.executeUpdate(query1);
+                    pst = con.prepareStatement(query1);
+                    pst.executeUpdate(query1);
                     JOptionPane.showMessageDialog(null, "Employee  " +empname+  " Information Update");
                     lblmsg.setText("");
                     txt_name.setText("");
@@ -322,58 +303,61 @@ public class Employee extends Admin {
 	    }
    }
    
-   private void update() {
+   public void update() {
 	      
 	      int i = table.getSelectedRow();
 	      int j = table.getSelectedColumn();
 	      if(i>=0) {
 		    
 	    	  try {
-	    		  Class.forName("com.mysql.cj.jdbc.Driver");
-         		  Connection con=DriverManager.getConnection("jdbc:mysql://localhost/carservice", "root", "");
+	    		  super.update();
 	            if(j == 1) {
-	    	  
+	    	           
 	    	           String empnewname = JOptionPane.showInputDialog("Enter new name");
-	    	           if(empnewname.isEmpty() || !(Pattern.matches("^[a-zA-Z]+$",empnewname ))) {
-                      	 JOptionPane.showMessageDialog(null, "Please fill the field");
+	    	           if((empnewname != null) && (empnewname.length() > 0) && (Pattern.matches("^[a-zA-Z]+$",empnewname ))) {
+	    	        	   String query = "UPDATE `employee` SET `Employee_name`='"+empnewname+"' WHERE `Employee_Id`="+table.getValueAt(i,0);
+		    	           pst = con.prepareStatement(query);
+		     	           pst.executeUpdate(query);
+		    	           JOptionPane.showMessageDialog(null, "Employee Information Update");
+		    	           con.close();
+                      	 
                       	
                       }
 	    	           
 	    	           else {
-	    	           String query = "UPDATE `employee` SET `Employee_name`='"+empnewname+"' WHERE `Employee_Id`="+table.getValueAt(i,0);
-	    	           Statement ps = con.prepareStatement(query);
-	     	           ps.executeUpdate(query);
-	    	           JOptionPane.showMessageDialog(null, "Employee Information Update");
-	    	           con.close();
+	    	        	   JOptionPane.showMessageDialog(null, "Please fill the field with valid value");
                        }
+	    	           
+	    	           
 	    	  
 	            }
 	            else if(j == 2){
 	    	           String empnewadd = JOptionPane.showInputDialog("Enter new Address");
-	    	           if(empnewadd.isEmpty()) {
-	    	            	JOptionPane.showMessageDialog(null, "Please fill the field");
-	    	            }
-	    	           
-	    	           else {
+	    	           if((empnewadd != null) && (empnewadd.length() > 0)){
+	    	        	   
 	    	           String query = "UPDATE `employee` SET `Employee_add`='"+empnewadd+"' WHERE `Employee_Id`="+table.getValueAt(i,0);
-	    	           Statement ps = con.prepareStatement(query);
-	     	           ps.executeUpdate(query);
+	    	           pst = con.prepareStatement(query);
+	     	           pst.executeUpdate(query);
 	    	           JOptionPane.showMessageDialog(null, "Employee Information Update");
 	    	           con.close();
                        }
+	    	           
+	    	           else {
+	    	        	   JOptionPane.showMessageDialog(null, "Please fill the field with valid value");
+	    	           }
 	            }
 	            else if(j == 3){
 	    	           String empnewtel = JOptionPane.showInputDialog("Enter new Telephone number");
-	    	           if(empnewtel.isEmpty()) {
-	    	            	JOptionPane.showMessageDialog(null, "Please fill the field");
-	    	            }
-	    	           else {
+	    	           if((empnewtel != null) && (empnewtel.length() > 0) && empnewtel.matches("[0-9]+") && empnewtel.length() == 10) {
 	    	           String query = "UPDATE `employee` SET `Employee_tel`='"+empnewtel+"' WHERE `Employee_Id`="+table.getValueAt(i,0);
-	    	           Statement ps = con.prepareStatement(query);
-	     	           ps.executeUpdate(query);
+	    	           pst = con.prepareStatement(query);
+	     	           pst.executeUpdate(query);
 	    	           JOptionPane.showMessageDialog(null, "Employee Information Update");
 	    	           con.close();
-                }
+                       }
+	    	           else {
+	    	        	   JOptionPane.showMessageDialog(null, "Please fill the field with valid value"); 
+	    	           }
 	            }
 	      
 	            else {
@@ -400,7 +384,7 @@ public class Employee extends Admin {
        txtadd.setText("");
        txttel.setText("");
      }
-    // Driver  method
+    
    
 	public void setVisible(boolean b) {
 		}

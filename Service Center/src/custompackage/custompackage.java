@@ -67,25 +67,33 @@ public class custompackage {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setOpaque(true);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel_1.setBounds(63, 149, 120, 25);
+		lblNewLabel_1.setBounds(63, 118, 120, 25);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Customer");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1.setOpaque(true);
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel_1_1.setBounds(63, 203, 120, 25);
+		lblNewLabel_1_1.setBounds(63, 172, 120, 25);
 		frame.getContentPane().add(lblNewLabel_1_1);
 		
 		textField = new JTextField();
-		textField.setBounds(216, 154, 163, 25);
+		textField.setBounds(216, 123, 163, 25);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(216, 208, 163, 25);
+		textField_1.setBounds(216, 177, 163, 25);
 		frame.getContentPane().add(textField_1);
+		
+		JLabel lblNewLabel_5 = new JLabel("Vehicle wash");
+		lblNewLabel_5.setOpaque(true);
+		lblNewLabel_5.setBackground(Color.LIGHT_GRAY);
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_5.setBounds(347, 209, 253, 46);
+		frame.getContentPane().add(lblNewLabel_5);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Body wash");
 		chckbxNewCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -207,5 +215,7 @@ public class custompackage {
 		lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\Pasindu Maduranga\\eclipse-workspace\\custompackage\\img\\bg(1).png"));
 		lblNewLabel_4.setBounds(10, 10, 966, 743);
 		frame.getContentPane().add(lblNewLabel_4);
+		
+		
 	}
 }

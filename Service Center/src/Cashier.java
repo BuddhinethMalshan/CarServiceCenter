@@ -13,6 +13,22 @@ public class Cashier {
 	String inputID, customerName, customerAddress, customerTP, vehicleBrand, vehicleModel, vehicleRegNo;
 	private String customerType;
 	
+	private static final String username = "root";
+	private static final String password = "12345";
+	private static final String url = "jdbc:mysql://localhost:3306/carservice";
+	
+	Connection con;
+    PreparedStatement ps;
+	ResultSet rs ;
+	
+	static String custName;
+	static String custAdd;
+	//static int custTel;
+	static String custTel1;
+	static String vehBrand;
+	static String vehModel;
+	static String vehNo;
+	
 	private JFrame frame1 = new JFrame();
 	private JPanel panel1 = new JPanel();
 	private JLabel label1 = new JLabel("CUSTOMER TYPE");
@@ -146,43 +162,80 @@ public class Cashier {
 		
 					JOptionPane.showMessageDialog(frame1,"Please Enter Your ID!","ID Missing!",JOptionPane.INFORMATION_MESSAGE);     
 				}
-				else {
-					
-					try {
-						
-						Class.forName("com.mysql.jdbc.Driver");
-						Connection con = DriverManager.getConnection("jdbc:mysql://localhost/fourwheelautoservice","root","");
-						
-						System.out.println("Connected from 1");
-						
-						Statement stmt=con.createStatement();
-						String sql = "SELECT * FROM CustomerInfo WHERE CustomerID="+ inputID;
-						ResultSet rs = stmt.executeQuery(sql);
-						//input1.setText(rs.("CustomerName"));
-						
-						if(rs.next()) {
-							CustomerInfo obj3 = new CustomerInfo();
-							obj3.customerID=inputID;
-							obj3.type="old";
-							frame1.dispose();
-							obj3.starting();
-							obj3.fillingDetails();
-							obj3.onFullServiceClick();
-							obj3.onCustomServiceClick();		
-						}
-						else {
-							JOptionPane.showMessageDialog(frame1,"Sorry! Wrong ID","Invalid ID",JOptionPane.INFORMATION_MESSAGE);	
-						}
-						con.close();
-						
-						} catch (SQLException | ClassNotFoundException e2) {
-						System.out.println("Error from 1");
-						}
-						
+				else {			
+					        oldCustID();
+
 				}	
 				
 			}  
 		});	
+	}
+	
+	
+	public void oldCustID() {
+		String id1 = input1.getText();
+		int id = Integer.parseInt(id1);
+		String sql="select * from customer where customer_id=?;";
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con= DriverManager.getConnection(url,username,password);
+			ps = con.prepareStatement(sql);
+			ps.setInt(1,id);
+			rs = ps.executeQuery();
+			
+			//System.out.println("r");
+			
+			if(rs.next()) {
+				id = rs.getInt("customer_id");
+				custName = rs.getString("customer_name");
+				custAdd = rs.getString("customer_add");
+				int custTel = rs.getInt("customer_tel");
+				custTel1 = Integer.toString(custTel);
+				vehBrand = rs.getString("customer_vhty");
+				vehModel = rs.getString("customer_vhm");
+				vehNo = rs.getString("customer_vhn");
+				
+				//System.out.println(custName);
+				CustomerInfo obj3 = new CustomerInfo();
+				obj3.customerID=inputID;
+				obj3.type="old";
+				frame1.dispose();
+				obj3.starting();
+				obj3.fillingDetails();
+				obj3.onFullServiceClick();
+				obj3.onCustomServiceClick();
+				
+			}else {
+				JOptionPane.showMessageDialog(frame1,"Sorry! Wrong ID","Invalid ID",JOptionPane.INFORMATION_MESSAGE);	
+			}
+			
+			
+			con.close();
+		}
+		catch(Exception ex) {
+			System.out.println("Error");
+		}
+	}
+	
+	
+	public static String getcustName() {
+	    return custName;
+	}
+	public static String getcustAdd() {
+		return custAdd;
+	}
+	public static String getcustTel() {
+		return custTel1;
+	}
+	public static String getvehBrand() {
+		return vehBrand;
+	}
+	public static String getvehModel() {
+		return vehModel;
+	}
+	public static String getvehNo() {
+		return vehNo;
 	}
 		
 }

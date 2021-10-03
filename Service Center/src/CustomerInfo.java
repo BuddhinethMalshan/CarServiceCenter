@@ -206,6 +206,7 @@ public class CustomerInfo {
 		input1.setForeground (Color.yellow);
 		input1.setBackground (Color.BLACK);
 		input1.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
+		input1.setText(Cashier.getcustName());
 		
 		input2.setHorizontalAlignment(JTextField.CENTER);
 		input2.setCaretColor(Color.green);
@@ -213,6 +214,7 @@ public class CustomerInfo {
 		input2.setForeground (Color.green);
 		input2.setBackground (Color.BLACK);
 		input2.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
+		input2.setText(Cashier.getvehBrand());
 		
 		input3.setPreferredSize(new Dimension(370, 115));
 		input3.setCaretColor(Color.black);
@@ -220,6 +222,7 @@ public class CustomerInfo {
 		input3.setForeground (Color.black);
 		input3.setBackground (Color.white);
 		input3.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+		input3.setText(Cashier.getcustAdd());
 		
 		
 		input4.setHorizontalAlignment(JTextField.CENTER);
@@ -228,6 +231,7 @@ public class CustomerInfo {
 		input4.setForeground (Color.green);
 		input4.setBackground (Color.BLACK);
 		input4.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
+		input4.setText(Cashier.getvehModel());
 		
 		input5.setHorizontalAlignment(JTextField.CENTER);
 		input5.setCaretColor(Color.yellow);
@@ -235,6 +239,7 @@ public class CustomerInfo {
 		input5.setForeground (Color.yellow);
 		input5.setBackground (Color.BLACK);
 		input5.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
+		input5.setText(Cashier.getcustTel());
 		
 		
 		input6.setHorizontalAlignment(JTextField.CENTER);
@@ -243,6 +248,7 @@ public class CustomerInfo {
 		input6.setForeground (Color.green);
 		input6.setBackground (Color.BLACK);
 		input6.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
+		input6.setText(Cashier.getvehNo());
 		
 		button1.setFont(new Font("Arial", Font.BOLD, 24));
 		button1.setForeground (Color.BLACK);

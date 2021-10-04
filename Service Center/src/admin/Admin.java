@@ -100,29 +100,6 @@ public class Admin   {
 		lblemp.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panelemp.add(lblemp);
 		
-		JPanel panelemp_1 = new JPanel();
-		panelemp_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				 panelemp_1.setBackground(new Color(102, 205, 170));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				panelemp_1.setBackground(new Color(0, 139, 139));
-			}
-		});
-		panelemp_1.setForeground(Color.WHITE);
-		panelemp_1.setBackground(new Color(0, 139, 139));
-		panelemp_1.setBounds(228, 248, 192, 118);
-		frame.getContentPane().add(panelemp_1);
-		panelemp_1.setLayout(null);
-		
-		JLabel lblreport = new JLabel("Report");
-		lblreport.setBounds(53, 45, 84, 38);
-		panelemp_1.add(lblreport);
-		lblreport.setForeground(Color.WHITE);
-		lblreport.setFont(new Font("Tahoma", Font.BOLD, 16));
-		
 		JPanel panelemp_2 = new JPanel();
 		panelemp_2.addMouseListener(new MouseAdapter() {
 			@Override
@@ -182,7 +159,7 @@ public class Admin   {
 	});
 		panelemp_4.setForeground(Color.WHITE);
 		panelemp_4.setBackground(new Color(0, 139, 139));
-		panelemp_4.setBounds(752, 90, 192, 118);
+		panelemp_4.setBounds(494, 245, 192, 118);
 		frame.getContentPane().add(panelemp_4);
 		panelemp_4.setLayout(null);
 		
@@ -213,7 +190,7 @@ public class Admin   {
 		});
 		panelemp_5.setForeground(Color.WHITE);
 		panelemp_5.setBackground(new Color(0, 139, 139));
-		panelemp_5.setBounds(494, 248, 192, 118);
+		panelemp_5.setBounds(228, 245, 192, 118);
 		frame.getContentPane().add(panelemp_5);
 		panelemp_5.setLayout(null);
 		

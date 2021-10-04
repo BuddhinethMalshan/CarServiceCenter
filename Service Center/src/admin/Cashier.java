@@ -22,6 +22,9 @@ import javax.swing.JTable;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
@@ -32,6 +35,8 @@ public class Cashier {
 	private static final String username = "root";
 	private static final String password = "";
 	private static final String datacon = "jdbc:mysql://localhost/carservice";
+
+	private static final String Info = null;
 	
 	private JTextField txtcus;
 	private JTextField txtempname;
@@ -737,17 +742,43 @@ public void calqty() {
 
 public void print() {
 	
-	 if(total==0) {
+//	 if(total==0) {
+//		 JOptionPane.showMessageDialog(null, "Please Check the totalbefore the print");
+//	 }
+//	 else {
+//		 String finalbill = "Customer  "+txtempname.getText()+"\n\n Vehicle wash \n" + bill1+"Total Vehicale wash Price " +total1+ "\n\n Painting and wash \n"+bill2+"Total Painting Price " +total2;
+//		 String finalbill2 = "\n\n Wheel Allignment \n" +bill3+"Total Wheel Allignment Price "+total3+ "\n\n Battery Service \n" +bill4+"Total Battery Price "+total4;
+//		 String finalbill3 = "\n\n items \n" +bill5+"Total Item price " +total5+"\n\n\n Total Price Is: \t" +total;
+//		 JOptionPane.showMessageDialog(null, finalbill+finalbill2+finalbill3); 
+//	 }
+	 File myFile = new File("E:\\education\\UOC\\3rd Year\\1st Sem\\IT 3003\\teamr_repository\\Service Center\\bill.txt");
+	 try {
+	 FileWriter myWriter = new FileWriter(myFile);
+	 
+	 if(total==0)
+	 {
 		 JOptionPane.showMessageDialog(null, "Please Check the totalbefore the print");
 	 }
-	 else {
-		 String finalbill = "Customer  "+txtempname.getText()+"\n\n Vehicle wash \n" + bill1+"Total Vehicale wash Price " +total1+ "\n\n Painting and wash \n"+bill2+"Total Painting Price " +total2;
-		 String finalbill2 = "\n\n Wheel Allignment \n" +bill3+"Total Wheel Allignment Price "+total3+ "\n\n Battery Service \n" +bill4+"Total Battery Price "+total4;
-		 String finalbill3 = "\n\n items \n" +bill5+"Total Item price " +total5+"\n\n\n Total Price Is: \t" +total;
+	 else
+	 {   String address = "|===========================|\n 4 Wheel Auto center \n Contact No-0362548791 \n Adres-TeamR@gmail.com \n|===========================| \n\n";
+		 String details = "Cashier-Nalin \n Invoice No-0456 \n |===========================|\n Vehicle -Toyota\n Customer -" +txtempname.getText()+"\n|===========================|\n";
+	     String finalbill = address+details+"\n\n 1. Vehicle wash \n" + bill1+"Total Vehicale wash Price " +total1+ "\n\n 2. Painting and wash \n"+bill2+"Total Painting Price " +total2;
+		 String finalbill2 = "\n\n 3.Wheel Allignment \n" +bill3+"Total Wheel Allignment Price "+total3+ "\n\n 4.Battery Service \n" +bill4+"Total Battery Price "+total4;
+		 String finalbill3 = "\n\n 5.items \n" +bill5+"Total Item price " +total5+"\n\n\n|==== Total Price Is: \t" +total;
 		 JOptionPane.showMessageDialog(null, finalbill+finalbill2+finalbill3); 
+		 
+		 
+		 myWriter.write(finalbill+finalbill2+finalbill3);
+		 myWriter.close();
+		 JOptionPane.showMessageDialog(null,"Printed");
+	 }
+	 
+	 } catch (IOException e) {
+	 System.out.println("An error occurred");
+	 e.printStackTrace();
+	 }
 	 }
 	 
 	
 }
 
-}

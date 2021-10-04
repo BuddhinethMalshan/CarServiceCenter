@@ -1,0 +1,33 @@
+|===========================|
+ 4 Wheel Auto center 
+ Contact No-0362548791 
+ Adres-TeamR@gmail.com 
+|===========================| 
+
+Cashier-Nalin 
+ Invoice No-0456 
+ |===========================|
+ Vehicle -Toyota
+ Customer -sss
+|===========================|
+
+
+ 1. Vehicle wash 
+Total Vehicale wash Price 0.0
+
+ 2. Painting and wash 
+Protective Coat   4000
+Total Painting Price 4000.0
+
+ 3.Wheel Allignment 
+Total Wheel Allignment Price 0.0
+
+ 4.Battery Service 
+Total Battery Price 0.0
+
+ 5.items 
+gas   622
+Total Item price 6220.0
+
+
+|==== Total Price Is: 	10220.0

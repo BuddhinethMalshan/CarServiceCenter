@@ -108,7 +108,7 @@ public class Customer extends Admin  {
 		frame.getContentPane().add(pane);
 		
 		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon(Customer.class.getResource("/image/Service.jpg")));
+		lblNewLabel_4.setIcon(new ImageIcon(Customer.class.getResource("/images/Service.jpg")));
 		lblNewLabel_4.setBounds(0, 0, 778, 407);
 		frame.getContentPane().add(lblNewLabel_4);
 		
@@ -225,7 +225,7 @@ public class Customer extends Admin  {
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setIcon(new ImageIcon(Customer.class.getResource("/image/Car_logos.png")));
+		lblNewLabel_5.setIcon(new ImageIcon(Customer.class.getResource("/images/Car_logos.png")));
 		lblNewLabel_5.setBounds(151, 0, 618, 74);
 		panel_2.add(lblNewLabel_5);
 		

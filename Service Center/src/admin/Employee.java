@@ -74,7 +74,7 @@ public class Employee extends Admin {
         frame.getContentPane().add(pane);
         
         JLabel bgpic = new JLabel("");
-        bgpic.setIcon(new ImageIcon(Employee.class.getResource("/image/Customer.jpg")));
+        bgpic.setIcon(new ImageIcon(Employee.class.getResource("/images/Customer.jpg")));
         bgpic.setBounds(0, 0, 769, 408);
         frame.getContentPane().add(bgpic);
         
@@ -109,7 +109,7 @@ public class Employee extends Admin {
         JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setBounds(151, 0, 618, 74);
         panel_2.add(lblNewLabel);
-        lblNewLabel.setIcon(new ImageIcon(Employee.class.getResource("/image/Car_logos.png")));
+        lblNewLabel.setIcon(new ImageIcon(Employee.class.getResource("/images/Car_logos.png")));
         
         JButton btnback = new JButton("Back");
         btnback.addActionListener(new ActionListener() {

@@ -277,7 +277,7 @@ public class Inventory extends Admin  {
 		panel_3.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon(Inventory.class.getResource("/image/Car_logos.png")));
+		lblNewLabel_1.setIcon(new ImageIcon(Inventory.class.getResource("/images/Car_logos.png")));
 		lblNewLabel_1.setBounds(181, 0, 618, 74);
 		panel_3.add(lblNewLabel_1);
 		

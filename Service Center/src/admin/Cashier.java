@@ -93,7 +93,7 @@ public class Cashier {
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon(Cashier.class.getResource("/image/Car_logos.png")));
+		lblNewLabel_3.setIcon(new ImageIcon(Cashier.class.getResource("/images/Car_logos.png")));
 		lblNewLabel_3.setBounds(461, 42, 606, 57);
 		panel.add(lblNewLabel_3);
 		

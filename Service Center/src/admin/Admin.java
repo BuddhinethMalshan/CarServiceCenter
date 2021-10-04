@@ -230,13 +230,13 @@ public class Admin   {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon(Admin.class.getResource("/image/Car_logos.png")));
+		lblNewLabel_1.setIcon(new ImageIcon(Admin.class.getResource("/images/Car_logos.png")));
 		lblNewLabel_1.setBounds(449, 0, 618, 74);
 		panel.add(lblNewLabel_1);
 		
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Admin.class.getResource("/image/Customer.jpg")));
+		lblNewLabel.setIcon(new ImageIcon(Admin.class.getResource("/images/Customer.jpg")));
 		lblNewLabel.setBounds(0, 0, 1067, 655);
 		frame.getContentPane().add(lblNewLabel);
 		

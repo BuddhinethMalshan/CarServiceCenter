@@ -1,33 +1,40 @@
 |===========================|
  4 Wheel Auto center 
- Contact No-0362548791 
- Adres-TeamR@gmail.com 
+ 32/B 
+ Queen's Road
+ Co;ombo -7
+ Contact No-0362548791
 |===========================| 
-
 Cashier-Nalin 
  Invoice No-0456 
  |===========================|
  Vehicle -Toyota
- Customer -sss
+ Customer -sasindu
 |===========================|
 
-
  1. Vehicle wash 
-Total Vehicale wash Price 0.0
+Interrior Vaccum   1700
+Total Vehicale wash Price 1700.0
 
  2. Painting and wash 
-Protective Coat   4000
-Total Painting Price 4000.0
+Normal Body paint   3000
+Total Painting Price 3000.0
 
  3.Wheel Allignment 
-Total Wheel Allignment Price 0.0
+Wheel Balancing   500
+Total Wheel Allignment Price 500.0
 
  4.Battery Service 
-Total Battery Price 0.0
+Battery Test   700
+Total Battery Price 700.0
 
  5.items 
-gas   622
-Total Item price 6220.0
+Total Item price 0.0
 
 
-|==== Total Price Is: 	10220.0
+|==== Total Price Is: 	5900.0
+|===========================|
+ Thank you for choosing us 
+ Have anice Day!! 
+ |===========================| 
+ Develop by Team_R

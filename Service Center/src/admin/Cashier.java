@@ -760,11 +760,12 @@ public void print() {
 		 JOptionPane.showMessageDialog(null, "Please Check the totalbefore the print");
 	 }
 	 else
-	 {   String address = "|===========================|\n 4 Wheel Auto center \n Contact No-0362548791 \n Adres-TeamR@gmail.com \n|===========================| \n\n";
+	 {   String address = "|===========================|\n 4 Wheel Auto center \n 32/B \n Queen's Road\n Co;ombo -7\n Contact No-0362548791\n|===========================| \n";
 		 String details = "Cashier-Nalin \n Invoice No-0456 \n |===========================|\n Vehicle -Toyota\n Customer -" +txtempname.getText()+"\n|===========================|\n";
-	     String finalbill = address+details+"\n\n 1. Vehicle wash \n" + bill1+"Total Vehicale wash Price " +total1+ "\n\n 2. Painting and wash \n"+bill2+"Total Painting Price " +total2;
+	     String enddetail =  "\n|===========================|\n Thank you for choosing us \n Have anice Day!! \n |===========================| \n Develop by Team_R";
+		 String finalbill = address+details+"\n 1. Vehicle wash \n" + bill1+"Total Vehicale wash Price " +total1+ "\n\n 2. Painting and wash \n"+bill2+"Total Painting Price " +total2;
 		 String finalbill2 = "\n\n 3.Wheel Allignment \n" +bill3+"Total Wheel Allignment Price "+total3+ "\n\n 4.Battery Service \n" +bill4+"Total Battery Price "+total4;
-		 String finalbill3 = "\n\n 5.items \n" +bill5+"Total Item price " +total5+"\n\n\n|==== Total Price Is: \t" +total;
+		 String finalbill3 = "\n\n 5.items \n" +bill5+"Total Item price " +total5+"\n\n\n|==== Total Price Is: \t" +total+enddetail;
 		 JOptionPane.showMessageDialog(null, finalbill+finalbill2+finalbill3); 
 		 
 		 

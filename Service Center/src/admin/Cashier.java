@@ -36,7 +36,7 @@ public class Cashier {
 	private static final String password = "";
 	private static final String datacon = "jdbc:mysql://localhost/carservice";
 
-	private static final String Info = null;
+	
 	
 	private JTextField txtcus;
 	private JTextField txtempname;

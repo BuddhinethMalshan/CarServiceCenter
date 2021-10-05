@@ -9,30 +9,31 @@ Cashier-Nalin
  Invoice No-0456 
  |===========================|
  Vehicle -Toyota
- Customer -sasindu
+ Customer -jikjkl
 |===========================|
 
  1. Vehicle wash 
-Interrior Vaccum   1700
-Total Vehicale wash Price 1700.0
+Body Wash   10000
+Total Vehicale wash Price 10000.0
 
  2. Painting and wash 
 Normal Body paint   3000
 Total Painting Price 3000.0
 
  3.Wheel Allignment 
-Wheel Balancing   500
-Total Wheel Allignment Price 500.0
+caster Alignment   5000
+Total Wheel Allignment Price 5000.0
 
  4.Battery Service 
 Battery Test   700
 Total Battery Price 700.0
 
  5.items 
-Total Item price 0.0
+gas   622
+Total Item price 6220.0
 
 
-|==== Total Price Is: 	5900.0
+|==== Total Price Is: 	24920.0
 |===========================|
  Thank you for choosing us 
  Have anice Day!! 

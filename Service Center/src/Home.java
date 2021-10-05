@@ -1,5 +1,4 @@
-
-
+import admin.Admin;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,9 +7,9 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.sql.*;
-import java.util.Timer;
 
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -24,8 +23,7 @@ import java.awt.Point;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.SystemColor;
-
-
+import cashier.Cashier;
 
 public class Home {
 
@@ -33,7 +31,8 @@ public class Home {
 	private JTextField txtname;
 	private JPasswordField txtpass;
 	private final ButtonGroup bg1 = new ButtonGroup();
-	
+	static String customer;
+
 	/**
 	 * Launch the application.
 	 */
@@ -164,7 +163,12 @@ public class Home {
 		lblloginBack.setBounds(791, 134, 278, 379);
 		frame.getContentPane().add(lblloginBack);
 		
-		JLabel lblNewLabel_3 = new JLabel("New label");
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon(this.getClass().getResource("/images/4wheel.png")));
+		lblNewLabel_3.setBackground(new Color(255, 215, 0));
+		lblNewLabel_3.setOpaque(true);
+		lblNewLabel_3.setFont(new Font("Bookman Old Style", Font.BOLD, 70));
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_3.setBounds(0, 0, 1069, 137);
 		frame.getContentPane().add(lblNewLabel_3);
 		
@@ -197,7 +201,13 @@ public class Home {
 				//System.out.println(rs1);
 				
 					if(rs1.next()){
-						JOptionPane.showMessageDialog(null,"Login Success!!");
+						Admin ad = new Admin();
+						ad.setVisible(true);
+						frame.setVisible(false);
+						frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+						frame.dispose();					
+						JOptionPane.showMessageDialog(frame,"Login Success!!");
+						
 					}else {
 						JOptionPane.showMessageDialog(null,"Login Fail...");
 					}
@@ -213,7 +223,12 @@ public class Home {
 				//System.out.println("111");
 				
 					if(rs2.next()){
-						JOptionPane.showMessageDialog(null,"Login Success!!");
+						Cashier cash = new Cashier();
+						cash.setVisible(true);
+						frame.setVisible(false);
+						frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+						frame.dispose();		
+						JOptionPane.showMessageDialog(frame,"Login Success!!");
 					}else {
 						JOptionPane.showMessageDialog(null,"Login Fail...");
 					}			
@@ -223,10 +238,14 @@ public class Home {
 			
 			System.out.println("Error....!!");
 			
-		}
-		
-		
+		}		
 	}
+	
+//	public void setVisible(boolean b) {
+//		Home window = new Home();
+//		window.frame.setVisible(true);
+//		
+//	}
 }
 
 

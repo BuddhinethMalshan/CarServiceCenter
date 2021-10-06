@@ -241,6 +241,12 @@ public class Home {
 			
 		}		
 	}
+
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		Home window = new Home();
+		window.frame.setVisible(true);
+	}
 	
 //	public void setVisible(boolean b) {
 //		Home window = new Home();

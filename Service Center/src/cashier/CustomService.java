@@ -756,7 +756,7 @@ public void print() {
 //		 String finalbill3 = "\n\n items \n" +bill5+"Total Item price " +total5+"\n\n\n Total Price Is: \t" +total;
 //		 JOptionPane.showMessageDialog(null, finalbill+finalbill2+finalbill3); 
 //	 }
-	 File myFile = new File("C:\\Users\\user\\Documents\\Java\\teamR Local\\Service Center\\bin\\cus.txt");
+	 File myFile = new File("C:\\Users\\user\\Documents\\Java\\teamR Local\\Service Center\\bi11\\cus.txt");
 	 try {
 	 FileWriter myWriter = new FileWriter(myFile);
 	 

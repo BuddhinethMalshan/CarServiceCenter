@@ -1,5 +1,5 @@
 package admin;
-
+import home.Home;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -18,6 +18,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 
@@ -27,7 +30,7 @@ public class Admin   {
 	
 	private JFrame frame;
 	private static final String username = "root";
-	private static final String password = "";
+	private static final String password = "12345";
 	private static final String datacon = "jdbc:mysql://localhost/carservice";
 	
 	Connection con = null;
@@ -67,7 +70,7 @@ public class Admin   {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panelemp = new JPanel();
+		final JPanel panelemp = new JPanel();
 		panelemp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -100,7 +103,7 @@ public class Admin   {
 		lblemp.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panelemp.add(lblemp);
 		
-		JPanel panelemp_2 = new JPanel();
+		final JPanel panelemp_2 = new JPanel();
 		panelemp_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -131,7 +134,7 @@ public class Admin   {
 		lblcus.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panelemp_2.add(lblcus);
 		
-		JPanel panelemp_4 = new JPanel();
+		final JPanel panelemp_4 = new JPanel();
 		panelemp_4.addMouseListener(new MouseAdapter(){
 	    public void mouseClicked(MouseEvent e) {
 	        
@@ -169,7 +172,7 @@ public class Admin   {
 		lblItems.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panelemp_4.add(lblItems);
 		
-		JPanel panelemp_5 = new JPanel();
+		final JPanel panelemp_5 = new JPanel();
 		panelemp_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -210,6 +213,21 @@ public class Admin   {
 		lblNewLabel_1.setIcon(new ImageIcon(Admin.class.getResource("/images/Car_logos.png")));
 		lblNewLabel_1.setBounds(449, 0, 618, 74);
 		panel.add(lblNewLabel_1);
+		
+		JButton btnNewButton = new JButton("Log Out");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				Home h = new Home();
+				h.setVisible(true);
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setBackground(new Color(220, 20, 60));
+		btnNewButton.setBounds(38, 19, 116, 37);
+		panel.add(btnNewButton);
 		
 		
 		JLabel lblNewLabel = new JLabel("");

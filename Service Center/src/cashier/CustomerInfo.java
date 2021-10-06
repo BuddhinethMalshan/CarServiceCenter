@@ -40,10 +40,11 @@ public class CustomerInfo {
 	private JLabel label9 = new JLabel();
 	static JTextField input1 = new JTextField(18);
 	static JTextField input2 = new JTextField(12);
-	private JTextArea input3 = new JTextArea("");
-	private JTextField input4 = new JTextField(12);
-	private JTextField input5 = new JTextField(18);
-	private JTextField input6 = new JTextField(12);
+	////////////////////////
+	static JTextArea input3 = new JTextArea("");
+	static JTextField input4 = new JTextField(12);
+	static JTextField input5 = new JTextField(18);
+	static JTextField input6 = new JTextField(12);
 	private JButton button1 = new JButton("FULL SERVICE");
 	private JButton button2 = new JButton("CUSTOM SERVICE");
 	
@@ -124,6 +125,15 @@ public class CustomerInfo {
 		label9.setFont(new Font("arial", Font.BOLD, 24));
 		label9.setForeground(Color.decode("#06DEF7"));
 		label9.setBorder(BorderFactory.createEmptyBorder(0, 350, 0,350));
+		space3.setHorizontalAlignment(SwingConstants.CENTER);
+		space3.setFont(new Font("Tahoma", Font.BOLD, 25));
+		space3.setForeground(new Color(255, 255, 255));
+		//////////////////////////////
+		if(type=="old") {
+		space3.setText("ID: "+customerID);
+		} else {
+			space3.setText("");	
+		}
 		img1.setBounds(309, 92, 100, 80);
 		
 		
@@ -210,7 +220,7 @@ public class CustomerInfo {
 		space1.setPreferredSize(new Dimension(70, 10));
 		space2.setBounds(-15, 77, 1100, 10);
 		space2.setPreferredSize(new Dimension(1100, 10));
-		space3.setBounds(414, 129, 180, 5);
+		space3.setBounds(414, 129, 180, 43);
 		space3.setPreferredSize(new Dimension(180, 5));
 		space4.setBounds(-15, 177, 1100, 10);
 		space4.setPreferredSize(new Dimension(1100, 10));
@@ -285,12 +295,26 @@ public class CustomerInfo {
 		button2.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e){ 
 				
+				try {
+					if(input1.getText()=="" ||
+					   input2.getText()==""	||
+					   input4.getText()=="" ||
+					   input6.getText()=="" ||
+					   input5.getText()=="" ) {
+						
+						JOptionPane.showMessageDialog(null, "Please enter at lest Required Fields");
+					
+					}else {
+				
 				addingNewCustomer();
 				CustomService custom = new CustomService();
 				custom.setVisible(true);
 				frame.setVisible(false);
 				//frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 				//frame.dispose();
+				
+					}
+				}catch(Exception e1) {}
 //			
 			}
 			
@@ -300,12 +324,26 @@ public class CustomerInfo {
 		
 		button1.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e){ 
-
-				FullService full = new FullService();
-				full.setVisible(true);
-				full.starting();
-				frame.setVisible(false);
-				addingNewCustomer();
+				
+				try {
+				if(input1.getText()=="" ||
+				   input2.getText()==""	||
+				   input4.getText()=="" ||
+				   input6.getText()=="" ||
+				   input5.getText()=="" ) {
+					
+					JOptionPane.showMessageDialog(null, "Please enter at lest Required Fields");
+				
+				}else {
+					FullService full = new FullService();
+					full.setVisible(true);
+					full.starting();
+					frame.setVisible(false);
+					addingNewCustomer();
+     			}
+				}catch(Exception e1) {
+					//JOptionPane.showMessageDialog(null, "Please enter at lest Required Fields");
+				}
 			
 			}
 
@@ -346,6 +384,7 @@ public class CustomerInfo {
 
 	public void setVisible(boolean b) {
 		// TODO Auto-generated method stub
+	
 		
 		
 	}

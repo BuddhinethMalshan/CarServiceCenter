@@ -1,3 +1,4 @@
+	
 package cashier;
 
 import java.awt.*;
@@ -108,6 +109,7 @@ public class FullService {
 	private JButton button1 = new JButton("Calculate Total");
 	private JButton button2 = new JButton("CONFIRM PURCHASE");
 	private JButton button3 = new JButton("Back");
+	private JButton button4 = new JButton("New Customer");
 	
 	DefaultTableModel model1 = new DefaultTableModel(); 
 	private JTable table1 = new JTable (model1);
@@ -178,10 +180,10 @@ public class FullService {
 	}
 
 
-	private String getText(Object getcname) {
+//
 		// TODO Auto-generated method stub
-		return cname;
-	}
+//		return cname;
+//	}
 
 
 	void starting() {
@@ -300,7 +302,7 @@ public class FullService {
 		panel11.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.red));
 		
 		
-		scroll.setPreferredSize(new Dimension(1100, 700));
+		scroll.setPreferredSize(new Dimension(1070, 700));
 		//scroll.setBounds(100,100,1083,694);
 		scroll.getVerticalScrollBar().setUnitIncrement(10);
 		
@@ -436,23 +438,25 @@ public class FullService {
 		img5.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.decode("#03FCFC")));
 		
 		
-		button1.setFont(new Font("Arial", Font.BOLD, 24));
+		button1.setFont(new Font("Arial", Font.BOLD, 20));
 		button1.setForeground (Color.BLACK);
 		button1.setBackground (Color.orange);
 		button1.setFocusPainted(false);
-		button1.setPreferredSize(new Dimension(300, 40));
+		button1.setPreferredSize(new Dimension(250, 40));
 		
-		button2.setFont(new Font("Arial", Font.BOLD, 24));
+		button2.setFont(new Font("Arial", Font.BOLD, 20));
 		button2.setForeground (Color.BLACK);
 		button2.setBackground (Color.green);
 		button2.setFocusPainted(false);
-		button2.setPreferredSize(new Dimension(300, 40));
+		button2.setPreferredSize(new Dimension(250, 40));
+		button2.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		
-		button3.setFont(new Font("Arial", Font.BOLD, 24));
+		button3.setFont(new Font("Arial", Font.BOLD, 20));
 		button3.setForeground (Color.BLACK);
 		button3.setBackground (Color.BLUE);
 		button3.setFocusPainted(false);
-		button3.setPreferredSize(new Dimension(200, 40));
+		button3.setPreferredSize(new Dimension(180, 40));
+		panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		
 		space1.setPreferredSize(new Dimension(160, 10));
@@ -548,6 +552,13 @@ public class FullService {
 		frame1.setBounds(100,100,1083,694);
 		
 		panel2.add(label0);
+		
+		button4.setFont(new Font("Arial", Font.BOLD, 15));
+		button4.setForeground (Color.BLACK);
+		button4.setBackground (Color.RED);
+		button4.setFocusPainted(false);
+		button4.setPreferredSize(new Dimension(150, 40));
+		
 		panel2.add(label00);
 		
 		panel1.add(scroll);
@@ -646,8 +657,9 @@ public class FullService {
 		panel2.add(button1);
 		panel2.add(space34);
 		panel2.add(button2);
+		panel2.add(button4);
 		
-		frame1.add(panel1);
+		frame1.getContentPane().add(panel1);
 		frame1.setVisible(true);
 		
 		button2.addActionListener(new ActionListener(){  
@@ -825,6 +837,21 @@ public class FullService {
 		
 	}
 		});
+		
+		button4.addActionListener(new ActionListener(){  
+			public void actionPerformed(ActionEvent e){ 
+		
+				Cashier c = new Cashier();
+				c.setVisible(true);
+				frame1.setVisible(false);
+				
+				
+		
+	}
+		});
+		
+		
+		
 	}
 	
 	void billPrinting() {
@@ -834,7 +861,7 @@ public class FullService {
 //        Date = java.time.LocalDate.now().toString();
 //        Time = java.time.LocalTime.now().toString();
 		
-        int billCount = new File("C:\\Users\\user\\Documents\\Java\\teamR Local\\Service Center\\bill").list().length;
+        int billCount = new File("C:\\Users\\user\\Documents\\Java\\teamR Local\\Service Center\\bill\\").list().length;
         int invoiceNo = billCount+1;
         
         Component frame3 = null;
@@ -859,7 +886,7 @@ public class FullService {
 	            		"Vehicle Reg No - "+vno+"\n"+"\n"+
 	            		"| ================|"+"\n"+"\n";
 
-	            BufferedWriter bfw = new BufferedWriter(new FileWriter("C:\\Users\\user\\Documents\\Java\\teamR Local\\Service Center\\bill"+invoiceNo+".txt"));
+	            BufferedWriter bfw = new BufferedWriter(new FileWriter("C:\\Users\\user\\Documents\\Java\\teamR Local\\Service Center\\bill\\"+invoiceNo+".txt"));
 	      	  
 	            bfw.write(firstpart);
 	           
@@ -969,7 +996,7 @@ public class FullService {
 	            
 	            String text;
 	            
-	            try { text = new String(Files.readAllBytes(Paths.get("C:\\Users\\user\\Documents\\Java\\teamR Local\\Service Center\\bill"+invoiceNo+".txt"))); 
+	            try { text = new String(Files.readAllBytes(Paths.get("C:\\Users\\user\\Documents\\Java\\teamR Local\\Service Center\\bill\\"+invoiceNo+".txt"))); 
 	            
 	            System.out.println(text);
 	            JOptionPane.showMessageDialog(frame3,text,"Invoice Created Successfully!",JOptionPane.INFORMATION_MESSAGE);	
@@ -1013,7 +1040,3 @@ public class FullService {
 	}
 	
 }
-
-
-
-

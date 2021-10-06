@@ -174,6 +174,14 @@ public class Cashier {
 					obj2.type=customerType;
 					frame.dispose();
 					obj2.starting();
+					obj2.input1.setText("");
+					obj2.input2.setText("");
+					obj2.input3.setText("");
+					obj2.input4.setText("");
+					obj2.input5.setText("");
+					obj2.input6.setText("");
+					obj2.customerID=null;
+					
 					//obj2.fillingDetails();
 					//obj2.onFullServiceClick();
 					//obj2.onCustomServiceClick();					
